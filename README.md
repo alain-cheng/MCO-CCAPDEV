@@ -3,4 +3,4 @@
 ![image](public/refimg.png)
 
 ### View page
-[index.html](https://alain-cheng.github.io/MCO-CCAPDEV/followedcourses-html/index.html)
+[index.html](https://alain-cheng.github.io/MCO-CCAPDEV/index.html)
