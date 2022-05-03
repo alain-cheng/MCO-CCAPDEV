@@ -1,1 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto:wght@100&display=swap');
+
+
+.coursesContainer {
+    display: inline-block;
+    position: static;
+    background-color: rgb(48, 131, 48);
+    margin-top: auto;
+    margin-inline: 25% 25%;
+}
+
+div#courses-headline {
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 22px;
+    margin-inline: 1% 3%;
+    margin-block: 2% 0.5%;
+}
+
+div#coursepostContainer {
+    display: flex;
+    flex-direction: row;
+    padding-inline: 8px 8px;
+    /* testing horizontal scrolling */
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.mainpost {
+    background-color: white;
+    height: 150px;
+    width: 175px;
+    margin-inline: 4px 4px;
+    margin-block: 0% 5%;
+}
+
+.mp-review {
+    background-color: rgb(48, 131, 48);
+    height: auto;
+}
+
+.mp-review img.mp-stars {
+    float: left;
+    clear: left;
+    margin-left: 3px;
+}
+
+.mp-review div.mp-rev-description {
+    float: right;
+    clear: right;
+    margin-right: 3px;
+}
