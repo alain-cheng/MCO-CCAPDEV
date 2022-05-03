@@ -13,4 +13,4 @@ Or this URL: https://alain-cheng.github.io/MCO-CCAPDEV/index.html
 > Settings > Pages > From the drop-down Branch, Select the branch to view > Save
 > 
 *publishing updates on pages take a while, wait for a bit before viewing*
-*or just download the zipfile*
+*or just download the zip file*
