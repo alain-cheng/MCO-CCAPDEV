@@ -9,12 +9,30 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
-        <div class="mainHeader">
-            <p> Hello World! </p>
+        <div class="navbar">
+            <div class="navbar-contents">
+                <button class="navbar-buttons">Home</button>
+                <button class="navbar-buttons">Profs</button>
+                <button class="navbar-buttons">Courses</button>
+                <button class="navbar-loginregister">Login/Register</button>  
+            </div>
         </div>
-        <div class="reviewContainer">
 
+        <div class="reviewContainer">
+            <div id="review-headline">WRITE A REVIEW</div>
+            <hr>
+            <div class="reviewDetails">
+                <input type="text" id="profname" name="profname" placeholder="Input Prof Name...">
+                <input type="text" id="profcourse" name="profcourse" placeholder="Input Prof's Course...">
+                <input type="text" id="acadterm" name="acadterm" placeholder="Input Academic Term...">
+            </div>
+            <br>
+            <div class="reviewBody">
+                <textarea id="reviewbody" name="reviewbody" placeholder="Be objective!"></textarea>
+            </div>
+            <button class="reviewSubmit">SUBMIT</button>
         </div>
+        <br>
         <div class="coursesContainer"> 
             <div id="courses-headline">COURSES YOU FOLLOW</div>
             <div id="coursepostContainer">
