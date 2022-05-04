@@ -116,7 +116,8 @@ textarea {
 div#courses-headline {
     font-family: 'Inter', sans-serif;
     color: white;
-    font-size: 22px;
+    font-size: 40px;
+    line-height: 2;
     margin-inline: 1% 3%;
     margin-block: 2% 0.5%;
 }
@@ -124,6 +125,7 @@ div#courses-headline {
 div#coursepostContainer {
     display: flex;
     flex-direction: row;
+    flex: 0 0 auto;
     padding-inline: 8px 8px;
     /* testing horizontal scrolling */
     overflow: auto;
@@ -134,10 +136,18 @@ div#coursepostContainer {
 
 .mainpost {
     background-color: white;
-    height: 150px;
-    width: 175px;
+    height: 200px;
+    width: 274px;
     margin-inline: 4px 4px;
     margin-block: 0% 5%;
+}
+
+.mp-header-left {
+    font-family: 'Inter', sans-serif;
+}
+
+.mp-header-middle {
+    font-family: 'Roboto', sans-serif;
 }
 
 .mp-review {
@@ -152,7 +162,19 @@ div#coursepostContainer {
 }
 
 .mp-review div.mp-rev-description {
+    font-family: 'Inter', sans-serif;
     float: right;
     clear: right;
     margin-right: 3px;
+}
+
+.mp-thumbnailContainer {
+    background: gray;
+    height: 75%;
+    width: 95%;
+    padding: 15% 2% 2% 0%;
+}
+
+.mp-subheader-left {
+    font-family: 'Roboto', sans-serif;
 }
