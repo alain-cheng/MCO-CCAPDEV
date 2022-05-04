@@ -1,0 +1,44 @@
+1star
+	-230px -71px
+	width: 200px
+	height: 39px
+
+2star
+	-10px -143px
+	width: 200px
+	height: 41px
+
+3star
+	-230px -10px
+	width: 200px
+	height: 41px
+
+4star
+	-10px -78px
+	width: 200px
+	height: 45px
+
+5star
+	-10px -10px
+	width: 200px
+	height: 48px
+
+dark star
+	-370px -130px
+	width: 37px
+	height: 32px
+
+bright star
+	-10px -204px
+	width: 37px
+	height: 32px
+
+full heart
+	-230px -130px
+	width: 50px
+	height: 50px
+
+empty heart
+	-300px -130px
+	width: 50px
+	height: 50px
