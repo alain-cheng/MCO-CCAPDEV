@@ -11,15 +11,15 @@ var Post = function(thumbnail, firstName, lastName, course, term, degree, colleg
 $(document).ready(function () {
 
      $('.navbar-buttons').hover(function() {
-          $(this).css("opacity", "50%");
+          $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
-          $(this).css("opacity", "100%");
+          $(this).css("background-color", "");
      });
 
      $('.navbar-loginregister').hover(function() {
-          $(this).css("opacity", "50%");
+          $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
-          $(this).css("opacity", "100%");
+          $(this).css("background-color", "");
      });
 
      $('.reviewSubmit').hover(function() {
