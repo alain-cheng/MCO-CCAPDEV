@@ -38,8 +38,8 @@ textarea {
 
 .navbar-buttons {
     background-color: rgb(0, 128, 55);
+    border-radius: 20px;
     border: none;
-    border-radius: 10px 10px 10px 10px;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -55,6 +55,7 @@ textarea {
 
 .navbar-loginregister {
     background-color: rgb(0, 128, 55);
+    border-radius: 20px;
     border: none;
     color: white;
     text-align: center;
@@ -103,6 +104,8 @@ textarea {
     cursor: pointer;
     float: right;
     opacity: 100%;
+
+    border-radius: 10px 10px 10px 10px;
 }
 
 
@@ -110,6 +113,7 @@ textarea {
 /* COURSES YOU FOLLOW */
 .coursesContainer {
     background-image: linear-gradient(to right, rgb(0, 128, 55), rgb(166, 212, 40));
+    border-radius: 10px 10px 10px 10px;
     margin: auto;
     width: 1000px;
 }
@@ -137,6 +141,7 @@ div#coursepostContainer {
 
 .mainpost {
     background-color: white;
+    border-radius: 7px 7px 7px 7px;
     min-height: 210px;
     max-height: 210px;
     min-width: 245px;
