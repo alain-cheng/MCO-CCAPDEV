@@ -137,7 +137,9 @@ div#coursepostContainer {
 .mainpost {
     background-color: white;
     min-height: 210px;
-    min-width: 232px;
+    max-height: 210px;
+    min-width: 245px;
+    max-width: 245px;
     margin-inline: 4px 4px;
     margin-block: 0% 5%;
 }
@@ -165,10 +167,16 @@ div#coursepostContainer {
     margin: 0px 3px 3px 3px;
 }
 
-.mp-review img.mp-stars {
+.mp-review-stars {
+    background-image: url('./public/sprites.png');
+    background-position: -18px -18px;
+    transform: scale(0.6);
+    min-width: 190px;
+    min-height: 28px;
+
     float: left;
     clear: left;
-    margin: 2px 0px 0px 3px;
+    margin: -5px 0px 0px -35px;
 }
 
 .mp-review div.mp-rev-description {
@@ -177,30 +185,66 @@ div#coursepostContainer {
     color: white;
     float: right;
     clear: right;
-    margin: 2px 3px 2px 0px;
+    margin: 2px 5px 2px 0px;
 }
 
 .mp-thumbnailContainer {
-    margin: 5px auto auto auto;
     background: rgb(233, 231, 231);
     height: 120px;
     width: auto;
+
     /*padding: 15% 2% 2% 0%;*/
-    margin: 0px 3px 0px 3px;
+    margin: 5px 3px auto 3px;
+}
+
+img.mp-thumbnail {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.mp-subheader {
+    min-height: 28px;
+    min-width: auto;
 }
 
 .mp-subheader-pic {
+    border: 2px solid rgb(48, 131, 48);
+    border-radius: 50%;
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+
     float: left;
     clear: left;
+    margin: 0px 0px 0px 3px;
+}
+
+.mp-subheader-pic:hover {
+    opacity: 50%;
+    cursor: pointer;
 }
 
 .mp-subheader-left {
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
+
     float: left;
+    margin: 0px 0px 0px 3px;
 }
 
 .mp-subheader-likebutton {
+    background-image: url('./public/sprites.png');
+    background-position: -300px -130px;
+    transform: scale(0.45);
+    min-width: 50px;
+    min-height: 50px;
+
     float: right;
-    margin-right: 3px;
+    clear: right;
+    margin: -13px -11px 0px 0px;
+}
+
+.mp-subheader-likebutton:hover {
+    opacity: 50%;
+    cursor: pointer;
 }
