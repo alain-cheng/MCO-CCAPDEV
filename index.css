@@ -104,10 +104,10 @@ textarea {
     position: fixed;
     border-radius: 15px 15px 15px 15px;
     background-color: var(--white3);
-    right: 240px;
+    margin: 10px 0px 0px 1030px;
     width: 238px;
     min-height: 1200px;
-    z-index: 1;
+    z-index: 2;
     /*border: 1px solid black;*/
 }
 
