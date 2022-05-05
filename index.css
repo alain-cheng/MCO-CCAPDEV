@@ -15,10 +15,16 @@ html {
     --white1: white;
     --white2: rgb(214, 214, 214);
     --white3: rgb(247, 245, 245);
-    --black1: rgb(0, 0, 0);
     --white4: rgb(249, 248, 248);
+    --white5: rgb(228, 224, 224);
+    --white6: #ccc;
+    --black1: rgb(0, 0, 0);
     --gray1: rgb(173, 173, 173);
     --gray2: rgb(229, 224, 224);
+    --gray3: gray;
+    --yellow1: #ffc700;
+    --yellow2: #deb217;
+    --yellow3: #c59b08;
 }
 
 /* Stylings for general HTML elements (i.e., <p>, <h1>) */
@@ -112,6 +118,8 @@ textarea {
     max-width: 988px;
     margin: 0 auto;
     display: block;
+    position: relative;
+    top: 10px;
 }
 
 .mainpage {
@@ -178,15 +186,16 @@ textarea {
 /* PAGE */
 .loginContainer {
     position: fixed;
-    background-color: white;
-    border: 3px solid rgb(228, 224, 224);
+    background-color: var(--white1);
+    border: 3px solid var(--white5);
     border-radius: 10px 10px 10px 10px;
     min-width: 500px;
     min-height: 250px;
     visibility: hidden;
+    display: none;
     z-index: 2;
 
-    box-shadow: 3px 3px 10px gray;
+    box-shadow: 3px 3px 10px var(--gray3);
     
     margin: 10% 30% auto 30%;
 }
@@ -213,14 +222,14 @@ textarea {
 /* WRITE A REVIEW */
 
 .reviewContainer {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--white1);
     margin: auto;
     width: auto;
 }
 
 #review-headline {
     font-family: 'Inter', sans-serif;
-    color: rgb(0, 0, 0);
+    color: var(--black1);
     font-size: 36px;
 }
 
@@ -259,7 +268,7 @@ textarea {
     white-space:nowrap;
     cursor:pointer;
     font-size:30px;
-    color:#ccc;
+    color: var(--white6);
 }
 
 .rate:not(:checked) > label:before {
@@ -267,12 +276,12 @@ textarea {
 }
 
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: var(--yellow1);    
 }
 
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: var(--yellow2);  
 }
 
 .rate > input:checked + label:hover,
@@ -280,7 +289,7 @@ textarea {
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+    color: var(--yellow3);
 }
 
 .reviewLegend {
@@ -471,13 +480,13 @@ img.mp-thumbnail {
 /* SEARCHBAR/FILTERS */
 
 .searchContainer {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--white1);
     margin: auto;
     width: 1000px;
 }
 
 .searchBody {
-    background-color: rgb(0, 128, 55);
+    background-color: var(--green1);
     width: 750px;
     height: 90px;
     display: inline-block;
@@ -489,7 +498,7 @@ img.mp-thumbnail {
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
-    border: 3px solid rgb(255, 255, 255);
+    border: 3px solid var(--white1);
     border-radius: 4px;
 }
 
@@ -498,7 +507,7 @@ img.mp-thumbnail {
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
-    border: 3px solid rgb(255, 255, 255);
+    border: 3px solid var(--white1);
     border-radius: 4px;
 }
 

@@ -1,4 +1,4 @@
-var Post = function(thumbnail, firstName, lastName, course, term, degree, college) {
+var Post = function(thumbnail, firstName, lastName, course, term, degree, college, stars) {
                 this.thumbnail = thumbnail;
                 this.firstName = firstName;
                 this.lastName  = lastName;
@@ -6,6 +6,7 @@ var Post = function(thumbnail, firstName, lastName, course, term, degree, colleg
                 this.term      = term;
                 this.degree    = degree;
                 this.college   = college;
+                this.stars     = stars;
            }
 
 $(document).ready(function () {
@@ -17,6 +18,7 @@ $(document).ready(function () {
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
           $(".loginContainer").css("visibility", "visible");
+          $(".loginContainer").css("display", "block");
           $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
           $("body >*:not(.loginContainer)").css("pointer-events", "none");
      });
@@ -24,6 +26,7 @@ $(document).ready(function () {
      /* closes the login pop up */
      $("button.login-close").click(function (e) {
           $(".loginContainer").css("visibility", "hidden");
+          $(".loginContainer").css("display", "none");
           $("body >*:not(.loginContainer)").css("filter", "none");
           $("body >*:not(.loginContainer)").css("pointer-events", "all");
      });
