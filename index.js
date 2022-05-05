@@ -10,6 +10,8 @@ var Post = function(thumbnail, firstName, lastName, course, term, degree, colleg
 
 $(document).ready(function () {
 
+     let rating;
+
      $(".loginContainer").css("visibility", "hidden");
 
      /* creates a pop up container when clicking login/register */
@@ -43,5 +45,37 @@ $(document).ready(function () {
      }, function (){
           $(this).css("opacity", "100%");
      });
+
+     $('.searchButton').hover(function() {
+          $(this).css("opacity", "50%");
+     }, function (){
+          $(this).css("opacity", "100%");
+     });
+
+     $('.rate').click(function() {
+          rating = $('input[name="rate"]:checked').val();
+          console.log(rating);
+          switch(rating) {
+               case '5':
+                    $('#reviewLegend').html("Excellent");
+                    break;
+               case '4':
+                    $('#reviewLegend').html("Good");
+                    break;
+               case '3':
+                    $('#reviewLegend').html("Average");
+                    break;
+               case '2':
+                    $('#reviewLegend').html("Poor");
+                    break;
+               case '1':
+                    $('#reviewLegend').html("DO NOT TAKE");
+                    break;
+          }
+
+     });
+
+
+
 });
   
