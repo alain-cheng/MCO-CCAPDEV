@@ -38,6 +38,14 @@ textarea {
     resize: none;
 }
 
+/* LOGO */
+
+.header-logo {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 50%;
+}
 
 /* NAVBAR */
 .navbar {
@@ -107,12 +115,10 @@ textarea {
 /* RIGHT BAR */
 .rightbar {
     margin: 0 auto auto 770px;
-    position: fixed;
+    position: absolute;
     border-radius: 15px 15px 15px 15px;
     background-color: var(--white3);
     width: 238px;
-    min-height: 1200px;
-    z-index: 2;
 }
 
 .userContainer {
