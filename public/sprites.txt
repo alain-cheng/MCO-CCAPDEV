@@ -1,3 +1,9 @@
+legend:
+	*   - confirmed position
+	n/a - not exact position
+
+====================List of Sprites and CSS code========================
+
 1star
 	-230px -71px
 	width: 200px
@@ -18,10 +24,11 @@
 	width: 200px
 	height: 45px
 
-5star
-	-10px -10px
-	width: 200px
-	height: 48px
+5star*
+	-18px -18px
+	transform: scale(0.6)
+	min-width: 190px;
+	min-height: 28px;
 
 dark star
 	-370px -130px
@@ -38,7 +45,9 @@ full heart
 	width: 50px
 	height: 50px
 
-empty heart
+empty heart*
 	-300px -130px
-	width: 50px
-	height: 50px
+	transform: scale(0.45)
+	min-width: 50px
+	min-height: 50px
+	
