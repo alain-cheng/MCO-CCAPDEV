@@ -15,6 +15,8 @@ html {
     --white1: white;
     --white2: rgb(214, 214, 214);
     --white3: rgb(233, 231, 231);
+    --white4: rgb(249, 248, 248);
+    --gray1: rgb(173, 173, 173);
 }
 
 /* Stylings for general HTML elements (i.e., <p>, <h1>) */
@@ -30,7 +32,7 @@ textarea {
     border: 3px solid var(--green1);
     border-radius: 4px;
     height: 200px;
-    width: 990px;
+    width: 98.8%;
     resize: none;
 }
 
@@ -87,6 +89,58 @@ textarea {
     opacity: 100%;
 }
 
+/* MAIN PAGE */
+.mainpage {
+    width: 750px;
+    min-height: 1200px;
+    margin-left: 260px;
+
+    /*border: 1px solid black;*/
+}
+
+
+/* RIGHT BAR */
+.rightbar {
+    position: fixed;
+    right: 240px;
+    width: 238px;
+    min-height: 1200px;
+
+    /*border: 1px solid black;*/
+}
+
+.userContainer {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 46px;
+
+    /*border: 1px solid black;*/
+}
+
+#follow-recommendations {
+    margin: 20px 0px 0px 0px;
+}
+
+#fr-title {
+    font-size: 15px;
+    color: var(--gray1);
+}
+
+
+#logged-user {
+    object-fit: contain;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    margin: 2px 0px auto auto;
+}
+
+.lu-info {
+    font-size: 15px;
+    margin: 10px 35px 0px 0px;
+    float: right;
+}
+
 /* LOGIN PAGE */
 .loginContainer {
     position: fixed;
@@ -113,7 +167,7 @@ textarea {
 .reviewContainer {
     background-color: rgb(255, 255, 255);
     margin: auto;
-    width: 1000px;
+    width: auto;
 }
 
 #review-headline {
@@ -153,7 +207,7 @@ textarea {
     background-image: linear-gradient(to right, var(--green1), var(--green3));
     border-radius: 10px 10px 10px 10px;
     margin: auto;
-    width: 1000px;
+    width: auto;
 }
 
 div#courses-headline {
@@ -163,6 +217,18 @@ div#courses-headline {
     line-height: 2;
     margin-inline: 1% 3%;
     margin-block: 2% 0.5%;
+}
+
+div#see-all {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    float: right;
+    margin-top: -40px;
+    margin-right: 10px;
+}
+
+div#see-all:hover {
+    cursor: pointer;
 }
 
 div#coursepostContainer {
