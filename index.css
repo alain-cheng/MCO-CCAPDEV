@@ -14,10 +14,11 @@ html {
     --green3: rgb(166, 212, 40);
     --white1: white;
     --white2: rgb(214, 214, 214);
-    --white3: rgb(233, 231, 231);
+    --white3: rgb(247, 245, 245);
     --black1: rgb(0, 0, 0);
     --white4: rgb(249, 248, 248);
     --gray1: rgb(173, 173, 173);
+    --gray2: rgb(229, 224, 224);
 }
 
 /* Stylings for general HTML elements (i.e., <p>, <h1>) */
@@ -101,22 +102,24 @@ textarea {
 /* RIGHT BAR */
 .rightbar {
     position: fixed;
+    border-radius: 15px 15px 15px 15px;
+    background-color: var(--white3);
     right: 240px;
     width: 238px;
     min-height: 1200px;
-
+    z-index: 1;
     /*border: 1px solid black;*/
 }
 
 .userContainer {
     font-family: 'Roboto', sans-serif;
     margin-top: 46px;
-
+    margin-left: 10px;
     /*border: 1px solid black;*/
 }
 
 #follow-recommendations {
-    margin: 20px 0px 0px 0px;
+    margin: 20px 0px 0px 10px;
 }
 
 #fr-title {
@@ -124,6 +127,22 @@ textarea {
     color: var(--gray1);
 }
 
+#fr-list {
+    margin-left: -10px;
+}
+
+.fr-list-element > p {
+    margin-left: 10px;
+}
+
+.fr-list-element {
+    border: 1px solid transparent;
+}
+
+.fr-list-element:hover {
+    background-color: var(--white2);
+    cursor: pointer;
+}
 
 #logged-user {
     object-fit: contain;
