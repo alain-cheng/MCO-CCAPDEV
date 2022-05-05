@@ -51,7 +51,7 @@ textarea {
 
 .navbar-contents {
     position: sticky;
-    margin: auto;
+    margin: 0 auto;
     padding: 0px;
     width: 1000px;
     height: 65px;
@@ -92,30 +92,33 @@ textarea {
 }
 
 /* MAIN PAGE */
+.content {
+    min-width: 988px;
+    max-width: 988px;
+    margin: 0 auto;
+    display: block;
+}
+
 .mainpage {
     min-width: 750px;
     max-width: 750px;
-    margin-left: 260px;
-    /*border: 1px solid black;*/
 }
 
 /* RIGHT BAR */
 .rightbar {
+    margin: 0 auto auto 770px;
     position: fixed;
     border-radius: 15px 15px 15px 15px;
     background-color: var(--white3);
-    margin: 10px 0px 0px 1030px;
     width: 238px;
     min-height: 1200px;
     z-index: 2;
-    /*border: 1px solid black;*/
 }
 
 .userContainer {
     font-family: 'Roboto', sans-serif;
     margin-top: 46px;
     margin-left: 10px;
-    /*border: 1px solid black;*/
 }
 
 #follow-recommendations {
