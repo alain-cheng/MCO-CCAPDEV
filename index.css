@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Roboto:wght@100&display=swap');
 
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
 /*Applies to everything, usually for variables*/
 :root{
     /*Variables for colors*/
@@ -37,6 +42,7 @@ textarea {
     border: 1px solid var(--white2);
     background-color: var(--green1);
     height: 65px;
+    z-index: 1;
 }
 
 .navbar-contents {
@@ -79,6 +85,27 @@ textarea {
     cursor: pointer;
     float: right;
     opacity: 100%;
+}
+
+/* LOGIN PAGE */
+.loginContainer {
+    position: fixed;
+    background-color: white;
+    border: 3px solid rgb(228, 224, 224);
+    border-radius: 10px 10px 10px 10px;
+    min-width: 500px;
+    min-height: 250px;
+    visibility: hidden;
+    z-index: 2;
+
+    box-shadow: 3px 3px 10px gray;
+    
+    margin: 10% 30% auto 30%;
+}
+
+.login-close {
+    float: right;
+    clear: right;
 }
 
 /* WRITE A REVIEW */
