@@ -14,7 +14,24 @@
                 <button class="navbar-buttons">Home</button>
                 <button class="navbar-buttons">Profs</button>
                 <button class="navbar-buttons">Courses</button>
-                <button class="navbar-loginregister">Login/Register</button>  
+                <button class="navbar-loginregister">Login/Register</button>
+            </div>
+        </div>
+
+        <!-- Right side bar -->
+        <div class="rightbar">
+            <div class="rightbar-contents">
+                <div class="userContainer">
+                    <img src="./public/empty-profile-pic.jpeg" id="logged-user">
+                    <div class="lu-info">
+                        <div class="lu-info-top">FirstName LastName</div>
+                        <div class="lu-info-bottom">Degree | College</div>
+                    </div>
+                </div>
+
+                <div class="follow-recommendations" id="follow-recommendations">
+                    <div class="fr-title" id="fr-title">Suggested users</div>
+                </div>
             </div>
         </div>
 
@@ -24,154 +41,159 @@
             <button type="button" class="login-close">X</button>
         </div>
 
-        <div class="reviewContainer">
-            <div id="review-headline">WRITE A REVIEW</div>
-            <hr>
-            <div class="reviewDetails">
-                <input type="text" id="profname" name="profname" placeholder="Input Prof Name...">
-                <input type="text" id="profcourse" name="profcourse" placeholder="Input Prof's Course...">
-                <input type="text" id="acadterm" name="acadterm" placeholder="Input Academic Term...">
+        <div class="mainpage">
+            <div class="reviewContainer">
+                <div id="review-headline">WRITE A REVIEW</div>
+                <hr>
+                <div class="reviewDetails">
+                    <input type="text" id="profname" name="profname" placeholder="Input Prof Name...">
+                    <input type="text" id="profcourse" name="profcourse" placeholder="Input Prof's Course...">
+                    <input type="text" id="acadterm" name="acadterm" placeholder="Input Academic Term...">
+                </div>
+                <br>
+                <div class="reviewBody">
+                    <textarea id="reviewbody" name="reviewbody" placeholder="Be objective!"></textarea>
+                </div>
+                <button class="reviewSubmit">SUBMIT</button>
             </div>
             <br>
-            <div class="reviewBody">
-                <textarea id="reviewbody" name="reviewbody" placeholder="Be objective!"></textarea>
+            <div class="coursesContainer">
+                <div id="coursesContainer-header">
+                    <div id="courses-headline">COURSES YOU FOLLOW</div>
+                    <div id="see-all">See all</div>
+                </div>
+                <div id="coursepostContainer">
+                    <!-- This section will contain all the posts of courses you follow  -->
+                    <div class="mainpost">
+                        <div class="mp-header">
+                            <div class="mp-header-left">Review For:</div>
+                            <div class="mp-header-middle">
+                                <div class="mp-header-middle-top">FirstName LastName</div>
+                                <div class="mp-header-middle-bottom">Course | Academic Term</div>
+                            </div>
+                        </div>
+                        <div class="mp-review">
+                            <div class="mp-review-stars"></div>
+                            <div class="mp-rev-description">Very Good</div>
+                        </div>
+                        <div class="mp-thumbnailContainer">
+                            <!-- Thumbnail Image here -->
+                        </div>
+                        <div class="mp-subheader">
+                            <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
+                            <div class="mp-subheader-left">
+                                <div class="mp-subheader-left-top">FirstName LastName</div>
+                                <div class="mp-subheader-left-bottom">Degree | College</div>
+                            </div>
+                            <div class="mp-subheader-likebutton"></div>
+                        </div>
+                    </div>
+
+                    <div class="mainpost">
+                        <div class="mp-header">
+                            <div class="mp-header-left">Review For:</div>
+                            <div class="mp-header-middle">
+                                <div class="mp-header-middle-top">FirstName LastName</div>
+                                <div class="mp-header-middle-bottom">Course | Academic Term</div>
+                            </div>
+                        </div>
+                        <div class="mp-review">
+                            <div class="mp-review-stars"></div>
+                            <div class="mp-rev-description">Very Good</div>
+                        </div>
+                        <div class="mp-thumbnailContainer">
+                            <img class="mp-thumbnail" src="">
+                        </div>
+                        <div class="mp-subheader">
+                            <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
+                            <div class="mp-subheader-left">
+                                <div class="mp-subheader-left-top">FirstName LastName</div>
+                                <div class="mp-subheader-left-bottom">Degree | College</div>
+                            </div>
+                            <div class="mp-subheader-likebutton"></div>
+                        </div>
+                    </div>
+
+                    <div class="mainpost">
+                        <div class="mp-header">
+                            <div class="mp-header-left">Review For:</div>
+                            <div class="mp-header-middle">
+                                <div class="mp-header-middle-top">FirstName LastName</div>
+                                <div class="mp-header-middle-bottom">Course | Academic Term</div>
+                            </div>
+                        </div>
+                        <div class="mp-review">
+                            <div class="mp-review-stars"></div>
+                            <div class="mp-rev-description">Very Good</div>
+                        </div>
+                        <div class="mp-thumbnailContainer">
+                            <!-- Thumbnail Image here -->
+                        </div>
+                        <div class="mp-subheader">
+                            <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
+                            <div class="mp-subheader-left">
+                                <div class="mp-subheader-left-top">FirstName LastName</div>
+                                <div class="mp-subheader-left-bottom">Degree | College</div>
+                            </div>
+                            <div class="mp-subheader-likebutton"></div>
+                        </div>
+                    </div>
+
+                    <div class="mainpost">
+                        <div class="mp-header">
+                            <div class="mp-header-left">Review For:</div>
+                            <div class="mp-header-middle">
+                                <div class="mp-header-middle-top">FirstName LastName</div>
+                                <div class="mp-header-middle-bottom">Course | Academic Term</div>
+                            </div>
+                        </div>
+                        <div class="mp-review">
+                            <div class="mp-review-stars"></div>
+                            <div class="mp-rev-description">Very Good</div>
+                        </div>
+                        <div class="mp-thumbnailContainer">
+                            <!-- Thumbnail Image here -->
+                        </div>
+                        <div class="mp-subheader">
+                            <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
+                            <div class="mp-subheader-left">
+                                <div class="mp-subheader-left-top">FirstName LastName</div>
+                                <div class="mp-subheader-left-bottom">Degree | College</div>
+                            </div>
+                            <div class="mp-subheader-likebutton"></div>
+                        </div>
+                    </div>
+
+                    <div class="mainpost">
+                        <div class="mp-header">
+                            <div class="mp-header-left">Review For:</div>
+                            <div class="mp-header-middle">
+                                <div class="mp-header-middle-top">FirstName LastName</div>
+                                <div class="mp-header-middle-bottom">Course | Academic Term</div>
+                            </div>
+                        </div>
+                        <div class="mp-review">
+                            <div class="mp-review-stars"></div>
+                            <div class="mp-rev-description">Very Good</div>
+                        </div>
+                        <div class="mp-thumbnailContainer">
+                            <!-- Thumbnail Image here -->
+                        </div>
+                        <div class="mp-subheader">
+                            <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
+                            <div class="mp-subheader-left">
+                                <div class="mp-subheader-left-top">FirstName LastName</div>
+                                <div class="mp-subheader-left-bottom">Degree | College</div>
+                            </div>
+                            <div class="mp-subheader-likebutton"></div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-            <button class="reviewSubmit">SUBMIT</button>
-        </div>
-        <br>
-        <div class="coursesContainer"> 
-            <div id="courses-headline">COURSES YOU FOLLOW</div>
-            <div id="coursepostContainer">
-                <!-- This section will contain all the posts of courses you follow  -->
-                <div class="mainpost">
-                    <div class="mp-header">
-                        <div class="mp-header-left">Review For:</div>
-                        <div class="mp-header-middle">
-                            <div class="mp-header-middle-top">FirstName LastName</div>
-                            <div class="mp-header-middle-bottom">Course | Academic Term</div>
-                        </div>
-                    </div>
-                    <div class="mp-review">
-                        <div class="mp-review-stars"></div>
-                        <div class="mp-rev-description">Very Good</div>
-                    </div>
-                    <div class="mp-thumbnailContainer">
-                        <!-- Thumbnail Image here -->
-                    </div>
-                    <div class="mp-subheader">
-                        <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
-                        <div class="mp-subheader-left">
-                            <div class="mp-subheader-left-top">FirstName LastName</div>
-                            <div class="mp-subheader-left-bottom">Degree | College</div>
-                        </div>
-                        <div class="mp-subheader-likebutton"></div>
-                    </div>
-                </div>
-
-                <div class="mainpost">
-                    <div class="mp-header">
-                        <div class="mp-header-left">Review For:</div>
-                        <div class="mp-header-middle">
-                            <div class="mp-header-middle-top">FirstName LastName</div>
-                            <div class="mp-header-middle-bottom">Course | Academic Term</div>
-                        </div>
-                    </div>
-                    <div class="mp-review">
-                        <div class="mp-review-stars"></div>
-                        <div class="mp-rev-description">Very Good</div>
-                    </div>
-                    <div class="mp-thumbnailContainer">
-                        <img class="mp-thumbnail" src="">
-                    </div>
-                    <div class="mp-subheader">
-                        <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
-                        <div class="mp-subheader-left">
-                            <div class="mp-subheader-left-top">FirstName LastName</div>
-                            <div class="mp-subheader-left-bottom">Degree | College</div>
-                        </div>
-                        <div class="mp-subheader-likebutton"></div>
-                    </div>
-                </div>
-
-                <div class="mainpost">
-                    <div class="mp-header">
-                        <div class="mp-header-left">Review For:</div>
-                        <div class="mp-header-middle">
-                            <div class="mp-header-middle-top">FirstName LastName</div>
-                            <div class="mp-header-middle-bottom">Course | Academic Term</div>
-                        </div>
-                    </div>
-                    <div class="mp-review">
-                        <div class="mp-review-stars"></div>
-                        <div class="mp-rev-description">Very Good</div>
-                    </div>
-                    <div class="mp-thumbnailContainer">
-                        <!-- Thumbnail Image here -->
-                    </div>
-                    <div class="mp-subheader">
-                        <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
-                        <div class="mp-subheader-left">
-                            <div class="mp-subheader-left-top">FirstName LastName</div>
-                            <div class="mp-subheader-left-bottom">Degree | College</div>
-                        </div>
-                        <div class="mp-subheader-likebutton"></div>
-                    </div>
-                </div>
-
-                <div class="mainpost">
-                    <div class="mp-header">
-                        <div class="mp-header-left">Review For:</div>
-                        <div class="mp-header-middle">
-                            <div class="mp-header-middle-top">FirstName LastName</div>
-                            <div class="mp-header-middle-bottom">Course | Academic Term</div>
-                        </div>
-                    </div>
-                    <div class="mp-review">
-                        <div class="mp-review-stars"></div>
-                        <div class="mp-rev-description">Very Good</div>
-                    </div>
-                    <div class="mp-thumbnailContainer">
-                        <!-- Thumbnail Image here -->
-                    </div>
-                    <div class="mp-subheader">
-                        <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
-                        <div class="mp-subheader-left">
-                            <div class="mp-subheader-left-top">FirstName LastName</div>
-                            <div class="mp-subheader-left-bottom">Degree | College</div>
-                        </div>
-                        <div class="mp-subheader-likebutton"></div>
-                    </div>
-                </div>
-
-                <div class="mainpost">
-                    <div class="mp-header">
-                        <div class="mp-header-left">Review For:</div>
-                        <div class="mp-header-middle">
-                            <div class="mp-header-middle-top">FirstName LastName</div>
-                            <div class="mp-header-middle-bottom">Course | Academic Term</div>
-                        </div>
-                    </div>
-                    <div class="mp-review">
-                        <div class="mp-review-stars"></div>
-                        <div class="mp-rev-description">Very Good</div>
-                    </div>
-                    <div class="mp-thumbnailContainer">
-                        <!-- Thumbnail Image here -->
-                    </div>
-                    <div class="mp-subheader">
-                        <img class="mp-subheader-pic" src="./public/empty-profile-pic.jpeg" alt="pic">
-                        <div class="mp-subheader-left">
-                            <div class="mp-subheader-left-top">FirstName LastName</div>
-                            <div class="mp-subheader-left-bottom">Degree | College</div>
-                        </div>
-                        <div class="mp-subheader-likebutton"></div>
-                    </div>
-                </div>
+            <div class="searchContainer">
                 
             </div>
-        </div>
-        <div class="searchContainer">
-            
         </div>
     </body>
 </html>
