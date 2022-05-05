@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>
-
+            DLS Prof to Pick | Home
         </title>
+        <meta charset="UTF-8">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="index.js"></script>
         <link rel="stylesheet" href="index.css">
@@ -31,6 +32,19 @@
                 <input type="text" id="profname" name="profname" placeholder="Input Prof Name...">
                 <input type="text" id="profcourse" name="profcourse" placeholder="Input Prof's Course...">
                 <input type="text" id="acadterm" name="acadterm" placeholder="Input Academic Term...">
+                <span>|</span>
+
+                <div class="rate">
+                    <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="text">5 stars</label>
+                    <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="text">4 stars</label>
+                    <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="text">3 stars</label>
+                    <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="text">2 stars</label>
+                    <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="text">1 star</label>
+                </div>
+
+                <div class="reviewLegend" id="reviewLegend">Rating</div>
+
+
             </div>
             <br>
             <div class="reviewBody">
@@ -38,7 +52,15 @@
             </div>
             <button class="reviewSubmit">SUBMIT</button>
         </div>
-        <br>
+
+        <br><br>
+
+        <div class="reviewContainer">
+            <hr>
+        </div>
+        
+
+
         <div class="coursesContainer"> 
             <div id="courses-headline">COURSES YOU FOLLOW</div>
             <div id="coursepostContainer">
@@ -170,8 +192,66 @@
                 
             </div>
         </div>
+
+        <br>
+
         <div class="searchContainer">
-            
+            <div id="review-headline">CUSTOM SEARCH</div>
+            <div class="searchBody">
+                <select name="filtercourse" id="filtercourse" class="searchFilter">
+                    <option value="" disabled selected hidden>Select Course ...</option>
+                    <option value="ccprog1">CCPROG1</option>
+                    <option value="ccprog2">CCPROG2</option>
+                    <option value="ccprog3">CCPROG3</option>
+                    <option value="csadprg">CSADPRG</option>
+                    <option value="ccapdev">CCAPDEV</option>
+                </select>
+
+                <select name="filterterm" id="filterterm" class="searchFilter">
+                    <option value="" disabled selected hidden>Select Term ...</option>
+                    <optgroup label="A.Y: 2021-2022">
+                        <option value="term2/21-22">Term 2</option>
+                        <option value="term1/21-22">Term 1</option>
+                    </optgroup>
+                    <optgroup label="A.Y: 2020-2021">
+                        <option value="term3/20-21">Term 3</option>
+                        <option value="term2/20-21">Term 2</option>
+                        <option value="term1/20-21">Term 1</option>
+                    </optgroup>
+                    <optgroup label="A.Y: 2019-2020">
+                        <option value="term3/19-20">Term 3</option>
+                        <option value="term2/19-20">Term 2</option>
+                        <option value="term2/19-20">Term 1</option>
+                    </optgroup>
+                </select>
+
+                <select name="filtercollege" id="filtercollege" class="searchFilter">
+                    <option value="" disabled selected hidden>Select College ...</option>
+                    <option value="cla">CLA</option>
+                    <option value="cos">COS</option>
+                    <option value="gcoe">GCOE</option>
+                    <option value="rvcob">RVCOB</option>
+                    <option value="soe">SOE</option>
+                    <option value="baggced">BAGCED</option>
+                    <option value="ccs">CCS</option>
+                </select>
+
+                <select name="filterrating" id="filterrating" class="searchFilter">
+                    <option value="" disabled selected hidden>Select Rating ...</option>
+                    <option value="1star">★</option>
+                    <option value="2stars">★★</option>
+                    <option value="3stars">★★★</option>
+                    <option value="4stars">★★★★</option>
+                    <option value="5stars">★★★★★</option>
+                </select> 
+
+                <button class="searchButton" id="searchByFilter">SEARCH BY FILTER</button>
+
+                <input class="searchName" type="text" id="profname" name="profname" placeholder="Input Prof Name...">
+                <button class="searchButton" id="searchByName">SEARCH BY NAME</button>
+                
+            </div>   
         </div>
+        
     </body>
 </html>
