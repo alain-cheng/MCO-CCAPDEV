@@ -15,6 +15,7 @@ html {
     --white1: white;
     --white2: rgb(214, 214, 214);
     --white3: rgb(233, 231, 231);
+    --black1: rgb(0, 0, 0);
     --white4: rgb(249, 248, 248);
     --gray1: rgb(173, 173, 173);
 }
@@ -22,7 +23,7 @@ html {
 /* Stylings for general HTML elements (i.e., <p>, <h1>) */
 
 input[type=text], select{
-    width: 150px;
+    width: 190px;
     border: 3px solid var(--green1);
     border-radius: 4px;
     resize: vertical;
@@ -184,6 +185,68 @@ textarea {
     margin-top: 10px;
 }
 
+.reviewStars {
+    position: absolute;
+	top: 15.3%;
+	left: 72.3%;
+	transform: translate(-50%, -50%) rotateY(180deg);
+	display: flex;
+}
+
+/* STAR RATING */
+.rate {
+    height: 29px;
+    margin: 0%;
+    display: inline-block;
+}
+
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.reviewLegend {
+    color: var(--black1);
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    display: inline-block;
+}
+
+/* */
+
+
+
 .reviewSubmit {
     background-color: var(--green1);
     border: none;
@@ -199,8 +262,6 @@ textarea {
 
     border-radius: 10px 10px 10px 10px;
 }
-
-
 
 /* COURSES YOU FOLLOW */
 .coursesContainer {
@@ -357,4 +418,54 @@ img.mp-thumbnail {
 .mp-subheader-likebutton:hover {
     opacity: 50%;
     cursor: pointer;
+}
+
+/* SEARCHBAR/FILTERS */
+
+.searchContainer {
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    width: 1000px;
+}
+
+.searchBody {
+    background-color: rgb(0, 128, 55);
+    margin: auto;
+    width: 1000px;
+    height: 45px;
+    display: inline-block;
+
+}
+
+.searchFilter {
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 4px;
+}
+
+.searchName {
+    width: 120px;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 4px;
+}
+
+.searchButton {
+    background-color: var(--white1);
+    margin-top: 10px;
+    border: none;
+    color: var(--black1);
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 100%;
+    border-radius: 10px 10px 10px 10px;
 }
