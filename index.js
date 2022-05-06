@@ -56,9 +56,11 @@ $(document).ready(function () {
      $(".loginContainer").css("visibility", "hidden");
 
      /** When user presses a like button */
+    /*
      $(selector).click(function (e) { 
           
      });
+     */
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
