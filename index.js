@@ -247,5 +247,132 @@ $(document).ready(function () {
                     break;
           }
      });
+
+     //Submit review checking for missing inputs and storing valid inputs into variables
+     $(".reviewSubmit").click(function () {
+          //Storing the inputs into vars
+          var fNameInput = $("#profname").val();
+          var lNameInput = $("#profLastName").val();
+          var courseInput = $("#profcourse").val();
+          var aTermInput = $("#acadterm").val();
+          var descInput = $("#reviewbody").val();
+
+          //Used for input checking
+          var errState = 0;
+
+          //Checking for missing inputs
+          if(fNameInput == "")
+          {
+               if(errState == 0)
+                    errState = 1;
+               else
+                    errState = 420;
+          }
+          if(lNameInput == "")
+          {
+               if(errState == 0)
+                    errState = 2;
+               else
+                    errState = 420;
+          }
+          if(courseInput == "")
+          {
+               if(errState == 0)
+                    errState = 3;
+               else
+                    errState = 420;
+          }
+          if(aTermInput == "")
+          {
+               if(errState == 0)
+                    errState = 4;
+               else
+                    errState = 420;
+          }
+          if(rating == undefined)
+          {
+               if(errState == 0)
+                    errState = 5;
+               else
+                    errState = 420;
+          }
+          if(descInput == "")
+          {
+               if(errState == 0)
+                    errState = 6;
+               else
+                    errState = 420;
+          }
+          //Printing errState
+          switch(errState)
+          {
+               case 1:
+                    $("#reviewStatus").html("No first name inputted!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 2:
+                    $("#reviewStatus").html("No last name inputted!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 3:
+                    $("#reviewStatus").html("No course inputted!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 4:
+                    $("#reviewStatus").html("No academic term inputted!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 5:
+                    $("#reviewStatus").html("No rating selected!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 6:
+                    $("#reviewStatus").html("No description inputted!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 420:
+                    $("#reviewStatus").html("Multiple missing inputs!");
+                    $("#reviewStatus").css("color", "red");
+                    $("#reviewStatus").css("display", "block");
+                    break;
+               case 0:
+                    $("#reviewStatus").html("Review successfully submitted!");
+                    $("#reviewStatus").css("color", "green");
+                    $("#reviewStatus").css("display", "block");
+                    setTimeout(() => {$("#reviewStatus").css("display", "none");}, "1600");
+                    break;
+          }
+
+          //Submit review
+          if(errState == 0)
+          {
+               //Console output for now... Store data later
+               console.log("First Name: " + fNameInput);
+               console.log("Last Name: " + lNameInput);
+               console.log("Course: " + courseInput);
+               console.log("Academic Term: " + aTermInput);
+               console.log("Rating: " + rating);
+               console.log("Description: " + descInput);
+
+               //Reset inputs
+               $("#profname").val("");
+               $("#profLastName").val("");
+               $("#profcourse").val("");
+               $("#acadterm").val("");
+               $("input:radio[name='rate']:checked")[0].checked = false;
+               rating = undefined;
+               $('#reviewLegend').html("Rating");
+               $("#reviewbody").val("");
+          }
+
+          //Reset errState
+          var errState = 0;
+     });
 });
   
