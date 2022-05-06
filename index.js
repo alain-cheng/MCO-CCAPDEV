@@ -18,13 +18,19 @@ var Post = function(thumbnail, course, term, stars, owner, id) {
                 this.id        = id; // kahit 6 digit id
            }
 
+var Course = function(coursename, college) {
+                this.coursename = coursename;
+                this.college = college; // college a course belongs to
+           }
+
 var users = []; // save all users here
 var posts = []; // all posts
+var courses = []; // all courses
 
 $(document).ready(function () {
      
      // generate 5 sample users
-     var user1 = new User("John", "Doe", "BSCS", "College of Science", "JDoe", "user1", ".public/empty-profile-pic.jpeg");
+     var user1 = new User("John", "Doe", "BSCS", "College of Science", "JDoe", "user1", ".public/user1.jpg");
      var user2 = new User("Maria", "Christina", "BSCS", "College of Science", "Maria", "user2", ".public/empty-profile-pic.jpeg");
      var user3 = new User("Amy", "Rose", "BSCS", "College of Science", "Roseamy", "user3", ".public/empty-profile-pic.jpeg");
      var user4 = new User("Lance", "Mendoza", "BSCS", "College of Science", "LanDoza", "user4", ".public/empty-profile-pic.jpeg");
@@ -39,18 +45,20 @@ $(document).ready(function () {
      var post5 = new Post("./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5, 100005);
      posts.push(post1, post2, post3, post4, post5);
 
-     // debugging
-     console.log("post1 course: " + post1.course);
-     console.log("post1 is owned by: " + post1.owner.username);
-     console.log("post5 is owned by: " + post5.owner.username);
-
      // lets auto login user1 for now
      var currentUser = user1;
      login(currentUser);
+     console.log(user1.username + " logged in.");
      
      let rating;
 
+     // hide the login container
      $(".loginContainer").css("visibility", "hidden");
+
+     /** When user presses a like button */
+     $(selector).click(function (e) { 
+          
+     });
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
@@ -70,10 +78,31 @@ $(document).ready(function () {
 
      function login(user) {
           // reset right bar contents
-          
+          $(".lu-info-top").text("");
+          $(".lu-info-bottom").text("");
+
+          // set logged user contents
+          $(".lu-info-top").text(user.firstName + " " + user.lastName);
+          $(".lu-info-bottom").text(user.degree + " | " + user.college);
+
+          // reset suggested courses
+          $("#fr-list").html("");
+          var frListElement = document.createElement("div");
+          var frListText = document.createElement("p");
+          $(frListElement).addClass("fr-list-element");
+          $(frListElement).append(frListText);
+          $(frListText).text("Course 1");
+
+          $("#fr-list").append(frListElement);
      }
 
+     function refreshContent() {
 
+     }
+
+     function displayContent() {
+
+     }
 
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");
@@ -119,10 +148,6 @@ $(document).ready(function () {
                     $('#reviewLegend').html("DO NOT TAKE");
                     break;
           }
-
      });
-
-
-
 });
   
