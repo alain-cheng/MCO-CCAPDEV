@@ -278,6 +278,15 @@ textarea {
 	display: flex;
 }
 
+#reviewStatus{
+    float: right;
+    position: relative;
+    bottom: 11px;
+    right: 5px;
+    display: none;
+    height: 0px;
+}
+
 /* STAR RATING */
 .rate {
     height: 29px;
@@ -286,7 +295,7 @@ textarea {
 }
 
 .rate:not(:checked) > input {
-    position:absolute;
+    position: fixed;
     top:-9999px;
 }
 
