@@ -185,6 +185,26 @@ $(document).ready(function () {
           $(mpSHImg).attr("src", post.owner.img);
           $(mpSHLTop).text(post.owner.firstName + " " + post.owner.lastName);
           $(mpSHLBot).text(post.owner.degree + " | " + post.owner.college);
+          //Changing the amount of stars in the post
+          switch(post.stars)
+          {
+               case 1:
+                    $(mpRStars).css("background-position", "-230px -76px");
+                    $(mpRDesc).css("bottom", "40px"); //Patch for 1star text being in the wrong position
+                    break;
+               case 2:
+                    $(mpRStars).css("background-position", "-10px -148px");
+                    break;
+               case 3:
+                    $(mpRStars).css("background-position", "-230px -14px");
+                    break;
+               case 4:
+                    $(mpRStars).css("background-position", "-10px -83px");
+                    break;
+               case 5:
+                    $(mpRStars).css("background-position", "-10px -18px");
+                    break;
+          }
 
           // place created elements to main post parent container
           $("#coursepostContainer").append(mainpost);
