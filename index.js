@@ -37,10 +37,10 @@ $(document).ready(function () {
      
      // generate 5 sample users
      var user1 = new User("John", "Doe", "BSCS", "College of Science", "JDoe", "user1", "./public/user1.jpg");
-     var user2 = new User("Maria", "Christina", "BSCS", "College of Science", "Maria", "user2", "./public/empty-profile-pic.jpeg");
-     var user3 = new User("Amy", "Rose", "BSCS", "College of Science", "Roseamy", "user3", "./public/empty-profile-pic.jpeg");
-     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Science", "LanDoza", "user4", "./public/empty-profile-pic.jpeg");
-     var user5 = new User("Francis", "Brown", "BSCS", "College of Science", "Francy", "user5", "./public/empty-profile-pic.jpeg");
+     var user2 = new User("Maria", "Christina", "BSCS", "College of Science", "Maria", "user2", "./public/user2.jpg");
+     var user3 = new User("Amy", "Rose", "BSCS", "College of Science", "Roseamy", "user3", "./public/user3.jpg");
+     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Science", "LanDoza", "user4", "./public/user4.jpg");
+     var user5 = new User("Francis", "Brown", "BSCS", "College of Science", "Francy", "user5", "./public/user5.jpg");
      users.push(user1, user2, user3, user4, user5);
 
      // generate 5 sample posts owned by user2 to user5
