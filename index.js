@@ -90,10 +90,27 @@ $(document).ready(function () {
      // and display all posts
      displayPosts(posts);
 
+     //var likeBtn = document.getElementsByClassName("mp-subheader-likebutton");
+     document.body.onclick = function(event) {
+          let element = document.getElementsByClassName("mp-subheader-likebutton");
+          let style = window.getComputedStyle(element);
+          let position = style.getPropertyValue("background-position");
+          if(event.target.getAttribute("class") == "mp-subheader-likebutton") {
+               if(position == "-300px -130px") {
+                    $(".mp-subheader-likebutton").css("background-position", "-230px -130px");
+               }
+               if(position == "-230px -130px") {
+                    $(".mp-subheader-likebutton").css("background-position", "-300px -130px");
+               }
+          }
+     };
+
      let rating;
 
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
+
+     
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
