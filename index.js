@@ -9,12 +9,13 @@ var User = function(firstName, lastName, degree, college, username, password, pi
           }
 
 
-var Post = function(thumbnail, course, term, stars, owner) {
+var Post = function(thumbnail, course, term, stars, owner, id) {
                 this.thumbnail = thumbnail;
                 this.course    = course;
                 this.term      = term;
                 this.stars     = stars;
                 this.owner     = owner; // we can assign nalang the firstName, lastName, degree, and college of the post owner here
+                this.id        = id; // kahit 6 digit id
            }
 
 var users = []; // save all users here
@@ -31,11 +32,11 @@ $(document).ready(function () {
      users.push(user1, user2, user3, user4, user5);
 
      // generate 5 sample posts owned by user2 to user5
-     var post1 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG", 2, 5, user2);
-     var post2 = new Post("./public/placeholder-thumbnail.jpeg", "CCDSTRU", 1, 4, user3);
-     var post3 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG2", 2, 3, user3);
-     var post4 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG", 1, 4, user4);
-     var post5 = new Post("./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5);
+     var post1 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG", 2, 5, user2, 100001);
+     var post2 = new Post("./public/placeholder-thumbnail.jpeg", "CCDSTRU", 1, 4, user3, 100002);
+     var post3 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG2", 2, 3, user3, 100003);
+     var post4 = new Post("./public/placeholder-thumbnail.jpeg", "CCPROG", 1, 4, user4, 100004);
+     var post5 = new Post("./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5, 100005);
      posts.push(post1, post2, post3, post4, post5);
 
      // debugging
