@@ -22,7 +22,7 @@ var users = []; // save all users here
 var posts = []; // all posts
 
 $(document).ready(function () {
-
+     
      // generate 5 sample users
      var user1 = new User("John", "Doe", "BSCS", "College of Science", "JDoe", "user1", ".public/empty-profile-pic.jpeg");
      var user2 = new User("Maria", "Christina", "BSCS", "College of Science", "Maria", "user2", ".public/empty-profile-pic.jpeg");
@@ -43,6 +43,10 @@ $(document).ready(function () {
      console.log("post1 course: " + post1.course);
      console.log("post1 is owned by: " + post1.owner.username);
      console.log("post5 is owned by: " + post5.owner.username);
+
+     // lets auto login user1 for now
+     var currentUser = user1;
+     login(currentUser);
      
      let rating;
 
@@ -63,6 +67,13 @@ $(document).ready(function () {
           $("body >*:not(.loginContainer)").css("filter", "none");
           $("body >*:not(.loginContainer)").css("pointer-events", "all");
      });
+
+     function login(user) {
+          // reset right bar contents
+          
+     }
+
+
 
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");

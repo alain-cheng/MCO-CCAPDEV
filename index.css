@@ -114,8 +114,8 @@ textarea {
 
 /* MAIN PAGE */
 .content {
-    min-width: 988px;
-    max-width: 988px;
+    min-width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
     display: block;
     position: relative;
@@ -123,14 +123,21 @@ textarea {
 }
 
 .mainpage {
+    margin: -200px 0px 0px 0px;
     min-width: 750px;
     max-width: 750px;
 }
 
+.mainpage hr {
+    width: 100%;
+}
+
 /* RIGHT BAR */
 .rightbar {
-    margin: 0 auto auto 770px;
-    position: absolute;
+    position: sticky;
+    top: 80px;
+    left: 1200px;
+    margin-top: 40px;
     border-radius: 15px 15px 15px 15px;
     background-color: var(--white3);
     width: 238px;
@@ -231,6 +238,8 @@ textarea {
     font-family: 'Inter', sans-serif;
     color: var(--black1);
     font-size: 36px;
+    max-height: 150px;
+    margin: 10px auto auto auto;
 }
 
 .reviewDetails {
