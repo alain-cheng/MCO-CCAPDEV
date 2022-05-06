@@ -46,7 +46,7 @@ $(document).ready(function () {
      posts.push(post1, post2, post3, post4, post5);
 
      // lets auto login user1 for now
-     currentUser = user1;
+     var currentUser = user1;
      login(currentUser);
      console.log(user1.username + " logged in.");
      
