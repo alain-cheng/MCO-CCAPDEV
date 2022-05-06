@@ -17,8 +17,8 @@ var Post = function(thumbnail, course, term, stars, owner) {
                 this.owner     = owner; // we can assign nalang the firstName, lastName, degree, and college of the post owner here
            }
 
-var users = [] // save all users here
-var posts = [] // all posts
+var users = []; // save all users here
+var posts = []; // all posts
 
 $(document).ready(function () {
 
