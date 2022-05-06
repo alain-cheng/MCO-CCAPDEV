@@ -6,6 +6,8 @@ var User = function(firstName, lastName, degree, college, username, password, im
                this.username  = username;
                this.password  = password;
                this.img       = String(img);
+               this.followedCourses = [] // save course names
+               this.likedPosts = []; // save post ids
           }
 
 
@@ -20,56 +22,78 @@ var Post = function(profFName, profLName, thumbnail, course, term, stars, owner,
                 this.id        = id; // kahit 6 digit id
            }
 
-var Course = function(coursename, college) {
-                this.coursename = coursename;
-                this.college = college; // college a course belongs to
+var College = function(name, code) {
+                this.name = name;
+                this.code = code;
+                this.courses = [] // each college has a list of courses
+           }
+
+var Course = function(name, collegeid) {
+                this.name = name;
+                this.collegeid = collegeid;
            }
 
 const mpHeaderLeft = "Review For:";
 
-var users = []; // save all users here
+var users = []; // all users
 var posts = []; // all posts
+var colleges = []; // all colleges
 var courses = []; // all courses
 
 var currentUser;
 
 $(document).ready(function () {
+     var currPosts = []; // posts only user should see based on follows or searches
      
      // generate 5 sample users
-     var user1 = new User("John", "Doe", "BSCS", "College of Science", "JDoe", "user1", "./public/user1.jpg");
-     var user2 = new User("Maria", "Christina", "BSCS", "College of Science", "Maria", "user2", "./public/user2.jpg");
-     var user3 = new User("Amy", "Rose", "BSCS", "College of Science", "Roseamy", "user3", "./public/user3.jpg");
-     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Science", "LanDoza", "user4", "./public/user4.jpg");
-     var user5 = new User("Francis", "Brown", "BSCS", "College of Science", "Francy", "user5", "./public/user5.jpg");
-     users.push(user1, user2, user3, user4, user5);
+     var user1 = new User("Harley", "Davis", "BSCS", "College of Computer Studies", "HDavis", "user1", "./public/user1.jpg");
+     var user2 = new User("Sarah", "Parker", "BSCS", "College of Computer Studies", "Sarah", "user2", "./public/user2.jpg");
+     var user3 = new User("Amy", "Bougainvillea", "BSCS", "College of Computer Studies", "Amivillea", "user3", "./public/user3.jpg");
+     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Computer Studies", "LanDoza", "user4", "./public/user4.jpg");
+     var user5 = new User("Francis", "Brown", "BSCS", "College of Computer Studies", "Francy", "user5", "./public/user5.jpg");
+     // and 1 user not from CCS
+     var user6 = new User("Mad", "Scientist", "BSBC", "College of Science", "MaddoScientisto", "user6", "./public/empty-profile-pic.jpeg");
+     users.push(user1, user2, user3, user4, user5, user6);
 
      // generate 5 sample posts owned by user2 to user5
      var post1 = new Post("Porter", "Newman", "./public/placeholder-thumbnail.jpeg", "CCPROG", 2, 5, user2, 100001);
-     var post2 = new Post("Henry", "Spencer", "./public/placeholder-thumbnail.jpeg", "CCDSTRU", 1, 4, user3, 100002);
+     var post2 = new Post("Henry", "Ford", "./public/placeholder-thumbnail.jpeg", "CCDSTRU", 1, 4, user3, 100002);
      var post3 = new Post("Farah", "Boeing", "./public/placeholder-thumbnail.jpeg", "CCPROG2", 2, 3, user3, 100003);
      var post4 = new Post("Jack", "Frost", "./public/placeholder-thumbnail.jpeg", "CCPROG", 1, 4, user4, 100004);
-     var post5 = new Post("Whitney", "Ford", "./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5, 100005);
-     posts.push(post1, post2, post3, post4, post5);
+     var post5 = new Post("Whitney", "Spencer", "./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5, 100005);
+     // and 2 sample posts owned by user6 not from CCS
+     var post6 = new Post("Charles", "Darwin", "./public/placeholder-thumbnail.jpeg", "KEMPSY1", 1, 5, user6, 100006);
+     var post7 = new Post("Isaac", "Newton", "./public/placeholder-thumbnail.jpeg", "KEMPRN1", 1, 4, user6, 100007);
+     posts.push(post1, post2, post3, post4, post5, post6, post7);
+
+     var college1 = new College("College of Computer Studies", "CCS");
+     var college2 = new College("College of Science", "COS");
+     colleges.push(college1, college2);
+
+     // define 5 sample courses
+     var course1 = new Course("CCPROG", "CCS");
+     var course2 = new Course("CCPROG2", "CCS");
+     var course3 = new Course("CCDSTRU", "CCS");
+     var course4 = new Course("CSINTSY", "CCS");
+     var course5 = new Course("CCAPDEV", "CCS");
+     // and 2 sample courses not on CCS
+     var course6 = new Course("KEMPSY1", "COS");
+     var course7 = new Course("KEMPRN1", "COS");
+     courses.push(course1, course2, course3, course4, course5, course6, course7);
+
+     // user1 is following CCPROG and CSINTSY
+     users[0].followedCourses.push(course1, course4);
 
      // lets auto login user1 for now
      login(user1);
-     // and display all posts
-     for(var i = 0; i < posts.length; i++)
-          displayPost(posts[i]);
 
-     console.log(user1.username + " logged in.");
-     
+     // and display all posts
+     displayPosts(posts);
+
      let rating;
 
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
-
-     /** When user presses a like button */
-    /*
-     $(selector).click(function (e) { 
-          
-     });
-     */
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
@@ -96,7 +120,7 @@ $(document).ready(function () {
      }
 
      function refreshContent(user) {
-          // reset right bar contents
+          // clear right bar contents
           $(".lu-info-top").text("");
           $(".lu-info-bottom").text("");
 
@@ -104,18 +128,69 @@ $(document).ready(function () {
           $(".lu-info-top").text(user.firstName + " " + user.lastName);
           $(".lu-info-bottom").text(user.degree + " | " + user.college);
 
-          // reset suggested courses
+          // clear suggested courses
           $("#fr-list").html("");
+
+          // suggest courses based on followed courses that belong in the same college
+          courseSuggestions(user.followedCourses);
+
+          // clear followed course contents
+          $("#coursepostContainer").html("");
+     }
+
+     // Accepts an array of courses
+     function courseSuggestions(courseList) {
+          // determine first which colleges the courses in the list are from
+          var collegecodes = [];
+          var flag = 0;
+
+          // save first element
+          collegecodes.push(courseList[0].collegeid);
+          // console.log(collegecodes[0]);
+          
+          if(courseList.length > 1) {
+               for(var i = 1; i < courseList.length; i++) { // collect all college codes first without duplicates
+                    flag = 1;
+                    for(var j = 0; j < collegecodes.length; j++) {
+                         if(collegecodes[j] == courseList[i].collegeid)
+                              flag = 0;
+                    }
+                    if(flag != 0)
+                         collegecodes.push(courseList[i].collegeid);
+               }
+
+               for(var x = 0; x < collegecodes.length; x++) { // display all courses with the same college code
+                    for(var y = 0; y < courses.length; y++) {
+                         if(courses[y].collegeid == collegecodes[x])
+                              displayCourse(courses[y].name);
+                    }
+               }
+          }
+          else {
+               for(var l = 0; l < courses.length; l++) {
+                    if(courses[l].collegeid == collegecodes[0]) // display all courses with the same collegeid
+                         displayCourse(courses[l].name);
+               }
+          }
+               
+
+     }
+
+     // Creates elements and appends the coursename to the display on the side bar
+     // Accepts the name of the course (String)
+     function displayCourse(coursename) {
           var frListElement = document.createElement("div");
           var frListText = document.createElement("p");
           $(frListElement).addClass("fr-list-element");
           $(frListElement).append(frListText);
-          $(frListText).text("Course 1");
-
+          $(frListText).text(coursename);
           $("#fr-list").append(frListElement);
+     }
 
-          // reset followed course contents
-          $("#coursepostContainer").html("");
+     // displays all posts in the given parameter
+     function displayPosts(posts) {
+          for(var i = 0; i < posts.length; i++)
+               displayPost(posts[i]);
      }
 
      // Will display post in the Followed Courses box (singular)
