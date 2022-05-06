@@ -437,8 +437,11 @@ div#coursepostContainer {
     background-image: url('./public/sprites.png');
     background-position: -18px -18px;
     transform: scale(0.6);
-    min-width: 190px;
-    min-height: 28px;
+    min-width: 200px;
+    min-height: 45px;
+    position: relative;
+    bottom: 3px;
+    right: 8px;
 
     float: left;
     clear: left;
@@ -451,6 +454,7 @@ div#coursepostContainer {
     color: var(--white1);
     float: right;
     clear: right;
+    position: relative;
     margin: 2px 5px 2px 0px;
 }
 
