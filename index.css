@@ -337,10 +337,6 @@ textarea {
     display: inline-block;
 }
 
-/* */
-
-
-
 .reviewSubmit {
     background-color: var(--green1);
     border: none;
@@ -356,6 +352,117 @@ textarea {
 
     border-radius: 10px 10px 10px 10px;
 }
+
+/* New Review */
+
+.newReviewContainer {
+    display: none;
+    border: 1px solid var(--black1);
+    border-radius: 10px 10px 10px 10px;
+    height: 250px;
+    margin: auto;
+    width: auto;
+}
+
+.nrSubContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-bottom: 5%;
+}
+
+    #nrUserDP {
+        object-fit: contain;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    .nrUserDetails {
+        font-size: 14px;
+        color: var(--green1);
+        margin: 0 auto;
+    }
+
+    .nrPubInfo {
+        font-size: 12px;
+        margin: 0 auto;
+    }
+
+.nrSubContainer2 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-bottom: 5%;
+    width: 75%;
+}
+
+    .nrHeader {
+        display: flex;
+    }
+
+    #reviewFor {
+        font-size: 16px;
+        color: var(--green1);
+    }
+
+    #reviewForInfo {
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    .nrRatingContainer {
+        background-color: var(--green2);
+        min-height: 21px;
+        display: flex;
+    }
+
+    .nrStars {
+        color: var(--yellow1); 
+        font-size: 16px;
+        margin-left: 5px;
+    }
+
+    .nrLegend {
+        font-family: 'Roboto', sans-serif;
+        color: var(--white1);
+        font-size: 14px;
+        margin-top: 3px;
+        margin-left: 5px;
+    }
+
+    .nrDesc {
+        border: 1px solid black;
+        font-family: 'Roboto', sans-serif;
+        min-height: 70%;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .nrLikeCounter {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: bolder;
+        text-align: right;
+        margin-top: 3px;
+
+    }
+
+
+
+.divider {
+    border-left: 3px solid green;
+    height: 175px;
+    margin-top: 5%;
+}
+
+
+
 
 /* COURSES YOU FOLLOW */
 .coursesContainer {

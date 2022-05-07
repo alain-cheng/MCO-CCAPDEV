@@ -322,6 +322,76 @@ $(document).ready(function () {
           }          
      }
 
+     /* User information (i.e., name, degree), number of likes, and date and time of publication are hard-coded for now */
+     /* I'll try to find some APIs that can get the current date and time*/
+
+     function createNewReview(fname, lname, course, term, rating, desc) {
+
+          let stars, legend, htmlString;
+
+          switch (rating) {
+               case '1':
+                    stars = "★";
+                    legend = "DO NOT TAKE";
+                    break;
+               case '2':
+                    stars = "★★";
+                    legend = "Poor";
+                    break;
+               case '3':
+                    stars = "★★★";
+                    legend = "Average";
+                    break;
+               case '4':
+                    stars = "★★★★";
+                    legend = "Good";
+                    break;
+               case '5':
+                    stars = "★★★★★";
+                    legend = "Excellent";
+                    break;
+          }
+
+          htmlString = `
+               <div class="nrSubContainer">
+
+                    <img src="./public/user1.jpg" id="nrUserDP">
+                    <div class="nrUserDetails">Harley Davis</div>
+                    <div class="nrUserDetails">BSCS - ST</div>
+                    <div class="nrUserDetails">ID 120</div>
+
+                    <br>
+
+                    <div class="nrPubInfo">Published on:</div>
+                    <div class="nrPubInfo">May 7, 2022</div>
+                    <div class="nrPubInfo">10:53 A.M</div>
+               </div>
+
+               <div class="divider"></div>
+
+               <div class="nrSubContainer2">
+
+                    <div class="nrHeader">
+                         <div id="reviewFor">REVIEW FOR: </div>
+                         <div id="reviewForInfo">${fname} ${lname} | ${course} | ${term}</div>
+                    </div>
+
+                    <div class="nrRatingContainer">
+                         <div class="nrStars">${stars}</div>
+                         <div class="nrLegend">${legend}</div>
+                    </div>
+
+                    <div class="nrDesc">${desc}</div>
+                    <div class="nrLikeCounter">5 likes</div>
+                    
+               </div>
+          `;
+
+
+          $(".newReviewContainer").css("display", "flex"); // reveals the (initially) hidden newReviewContainer div
+          return htmlString;
+     }
+
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
@@ -379,6 +449,7 @@ $(document).ready(function () {
 
           //Used for input checking
           var errState = 0;
+          $("#reviewStatus").html("");
 
           //Checking for missing inputs
           if(fNameInput == "")
@@ -479,6 +550,9 @@ $(document).ready(function () {
                console.log("Academic Term: " + aTermInput);
                console.log("Rating: " + rating);
                console.log("Description: " + descInput);
+
+               // Call createNewReview to update the newReviewContainer div
+               $(".newReviewContainer").html(createNewReview(fNameInput, lNameInput, courseInput, aTermInput, rating, descInput))
 
                //Reset inputs
                $("#profname").val("");
