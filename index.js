@@ -89,21 +89,13 @@ $(document).ready(function () {
 
      // and display all posts
      displayPosts(posts);
-
-     //var likeBtn = document.getElementsByClassName("mp-subheader-likebutton");
-     document.body.onclick = function(event) {
-          let element = document.getElementsByClassName("mp-subheader-likebutton");
-          let style = window.getComputedStyle(element);
-          let position = style.getPropertyValue("background-position");
-          if(event.target.getAttribute("class") == "mp-subheader-likebutton") {
-               if(position == "-300px -130px") {
-                    $(".mp-subheader-likebutton").css("background-position", "-230px -130px");
-               }
-               if(position == "-230px -130px") {
-                    $(".mp-subheader-likebutton").css("background-position", "-300px -130px");
-               }
-          }
-     };
+     
+     // add event listeners to all like buttons on followed courses
+     const buttons = document.querySelectorAll("div.mp-subheader-likebutton");
+     buttons.forEach((item) => {
+          item.addEventListener("click", like);
+     });
+     
 
      let rating;
 
@@ -312,6 +304,20 @@ $(document).ready(function () {
                case 5: return "Excellent";
                default: return "Error";
           }
+     }
+     
+     // This function is medjo unresponsive but kinda works just need to mash the like button sometimes to work.
+     function like(e) {
+          let bgPos = e.target.style.backgroundPosition;
+          if(bgPos == "-300px -130px") { // if like button is empty
+               e.target.style.backgroundPosition = "-230px -130px";
+               console.log("Liked!");
+          } 
+          else { // if like button is color red
+               e.target.style.backgroundPosition = "-300px -130px";
+               bgPos =
+               console.log("Removed Like.");
+          }          
      }
 
      $('.navbar-buttons').hover(function() {
