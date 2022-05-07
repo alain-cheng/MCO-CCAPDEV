@@ -356,7 +356,7 @@ textarea {
 /* New Review */
 
 .newReviewContainer {
-    display: flex;
+    display: none;
     border: 1px solid var(--black1);
     border-radius: 10px 10px 10px 10px;
     height: 250px;
