@@ -95,6 +95,8 @@ $(document).ready(function () {
      buttons.forEach((item) => {
           item.addEventListener("click", like);
      });
+     // set all like buttons 'unliked on default'
+     $(buttons).css("background-position", "-300px -130px");
      
 
      let rating;
