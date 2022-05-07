@@ -89,11 +89,20 @@ $(document).ready(function () {
 
      // and display all posts
      displayPosts(posts);
+     
+     // add event listeners to all like buttons on followed courses
+     const buttons = document.querySelectorAll("div.mp-subheader-likebutton");
+     buttons.forEach((item) => {
+          item.addEventListener("click", like);
+     });
+     
 
      let rating;
 
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
+
+     
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
@@ -295,6 +304,20 @@ $(document).ready(function () {
                case 5: return "Excellent";
                default: return "Error";
           }
+     }
+     
+     // This function is medjo unresponsive but kinda works just need to mash the like button sometimes to work.
+     function like(e) {
+          let bgPos = e.target.style.backgroundPosition;
+          if(bgPos == "-300px -130px") { // if like button is empty
+               e.target.style.backgroundPosition = "-230px -130px";
+               console.log("Liked!");
+          } 
+          else { // if like button is color red
+               e.target.style.backgroundPosition = "-300px -130px";
+               bgPos =
+               console.log("Removed Like.");
+          }          
      }
 
      $('.navbar-buttons').hover(function() {
