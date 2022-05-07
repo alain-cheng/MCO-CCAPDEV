@@ -91,12 +91,12 @@ $(document).ready(function () {
      displayPosts(posts);
      
      // add event listeners to all like buttons on followed courses
-     const buttons = document.querySelectorAll("div.mp-subheader-likebutton");
-     buttons.forEach((item) => {
+     const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
+     likeButtonsCF.forEach((item) => {
           item.addEventListener("click", like);
      });
      // set all like buttons 'unliked on default'
-     $(buttons).css("background-position", "-300px -130px");
+     $(likeButtonsCF).css("background-position", "-300px -130px");
      
 
      let rating;
