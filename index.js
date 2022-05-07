@@ -322,6 +322,13 @@ $(document).ready(function () {
           }          
      }
 
+     function createNewReview(fname, lname, course, term, stars, legend, desc) {
+          let htmlString = `
+
+          `;
+          return htmlString;
+     }
+
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
@@ -379,6 +386,7 @@ $(document).ready(function () {
 
           //Used for input checking
           var errState = 0;
+          $("#reviewStatus").html("");
 
           //Checking for missing inputs
           if(fNameInput == "")
