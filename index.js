@@ -92,11 +92,17 @@ $(document).ready(function () {
      
      // add event listeners to all like buttons on followed courses
      const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
-     likeButtonsCF.forEach((item) => {
-          item.addEventListener("click", like);
+     likeButtonsCF.forEach((e) => {
+          e.addEventListener("click", like);
      });
      // set all like buttons 'unliked on default'
      $(likeButtonsCF).css("background-position", "-300px -130px");
+
+     // event listeners to suggested courses
+     const followSuggestions = document.querySelectorAll(".fr-list-element-follow");
+     followSuggestions.forEach((e) => {
+          e.addEventListener("click", followCourse);
+     });
      
 
      let rating;
@@ -123,13 +129,14 @@ $(document).ready(function () {
      });
 
      function login(user) {
+          currentUser = user;
           // set profile picture
           $("#logged-user").attr("src", user.img);
 
           refreshContent(user);
-          currentUser = user;
      }
 
+     // page refresh
      function refreshContent(user) {
           // clear right bar contents
           $(".lu-info-top").text("");
@@ -183,19 +190,41 @@ $(document).ready(function () {
                          displayCourse(courses[l].name);
                }
           }
-               
-
      }
 
      // Creates elements and appends the coursename to the display on the side bar
      // Accepts the name of the course (String)
      function displayCourse(coursename) {
           var frListElement = document.createElement("div");
-          var frListText = document.createElement("p");
+               var frListElementName = document.createElement("div");
+               var frListElementFollow = document.createElement("div");
+
           $(frListElement).addClass("fr-list-element");
-          $(frListElement).append(frListText);
-          $(frListText).text(coursename);
+          $(frListElementName).addClass("fr-list-element-name");
+          $(frListElementFollow).addClass("fr-list-element-follow");
+
+          $(frListElement).append(frListElementName);
+          $(frListElement).append(frListElementFollow);
+
+          $(frListElementName).text(coursename);
+          $(frListElementFollow).text(checkFollowing(coursename));
+
           $("#fr-list").append(frListElement);
+     }
+
+     // Checks if current user is following a course
+     // Returns a string
+     function checkFollowing(coursename) {
+          let flag = 0;
+          for(var i = 0; i < currentUser.followedCourses.length; i++) {
+               if(currentUser.followedCourses[i].name == coursename)
+                    flag = 1;
+          }
+
+          if(flag == 1)
+               return "Following";
+          else
+               return "Follow";
      }
 
      // displays all posts in the given parameter
@@ -308,7 +337,7 @@ $(document).ready(function () {
           }
      }
      
-     // This function is medjo unresponsive but kinda works just need to mash the like button sometimes to work.
+     // likes posts from the courses you follow section
      function like(e) {
           let bgPos = e.target.style.backgroundPosition;
           if(bgPos == "-300px -130px") { // if like button is empty
@@ -320,6 +349,17 @@ $(document).ready(function () {
                bgPos =
                console.log("Removed Like.");
           }          
+     }
+
+     // follows/unfollows courses in the suggestions tab
+     function followCourse(e) {
+          let text = e.target.firstChild;
+          console.log(text);
+          console.log(e.target.innerHTML);
+          if(text == "Follow")
+               e.target.innerHTML = "Following";
+          else if(text == "Following")
+               e.target.innerHTML = "Follow";
      }
 
      /* User information (i.e., name, degree), number of likes, and date and time of publication are hard-coded for now */

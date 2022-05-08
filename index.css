@@ -171,18 +171,42 @@ textarea {
 
 #fr-list {
     margin-left: -10px;
-}
-
-.fr-list-element > p {
-    margin-left: 10px;
+    display: block;
 }
 
 .fr-list-element {
     border: 1px solid transparent;
+    display: inline-block;
+    overflow: auto;
+    width: 99%;
+    height: 50px;
+}
+
+.fr-list-element > div {
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.fr-list-element-name {
+    margin: auto auto auto 10px;
+    width: 50%;
+    height: 20px;
+}
+
+.fr-list-element-follow {
+    margin: 0 auto;
+    font-size: 12px;
+    color: var(--green2);
+    right: 0px;
+    width: 30%;
+    height: 20px;
 }
 
 .fr-list-element:hover {
     background-color: var(--white2);
+}
+
+.fr-list-element-follow:hover {
     cursor: pointer;
 }
 
@@ -206,8 +230,11 @@ textarea {
     margin: auto;
     float: left;
     clear: right;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: auto;
+}
+
+.lu-info-bottom {
+    font-size: 100%;
 }
 
 /* PAGE */
