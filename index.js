@@ -86,22 +86,26 @@ $(document).ready(function () {
      // lets auto login user1 for now
      login(user1);
 
-     // and display all posts
-     displayPosts(posts);
-     
-     // add event listeners to all like buttons on followed courses
-     addLikeEvents();
-
      // add an event handler to #fr-list when clicked
      const courseFollow = document.getElementById("fr-list");
      courseFollow.addEventListener("click", followCourse);
+
+     $("#coursepostContaner").scroll(fadeWrap);
+
+     function fadeWrap() {
+          let scrollPos = window.pageYOffset || document.documentElement.scrollLeft;
+          if(scrollPos > 300) {
+               $("#scroll-left").show();
+          }
+          else {
+               $("#scroll-left").hide();
+          }
+     }
 
      let rating;
 
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
-
-     
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
@@ -498,6 +502,22 @@ $(document).ready(function () {
           $(likeButtonsCF).css("background-position", "-300px -130px");
      }
 
+     function sideScroll(e, direction, speed, distance, step) {
+          let scrollAmount = 0;
+          let slideTimer = setInterval(function(){
+               if(direction == "left") {
+                    e.scrollLeft -= step;
+               } 
+               else {
+                    e.scrollLeft += step;
+               }
+               scrollAmount += step;
+               if(scrollAmount >= distance) {
+                    window.clearInterval(slideTimer);
+               }
+          }, speed);
+     }
+
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
@@ -674,5 +694,22 @@ $(document).ready(function () {
           //Reset errState
           var errState = 0;
      });
+
+     $("#scroll-left").click(function () { 
+          var container = document.getElementById("coursepostContainer");
+          sideScroll(container, "left", 5, 520, 10);
+     });
+
+     $("#scroll-right").click(function () { 
+          var container = document.getElementById("coursepostContainer");
+          sideScroll(container, "right", 5, 520, 10);
+     });
+
+     $("#coursesContainer").hover(function () {
+               $("#scroll-container").css("visibility", "visible");
+          }, function () {
+               $("#scroll-container").css("visibility", "hidden");
+          }
+     );
 });
   
