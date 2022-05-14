@@ -526,9 +526,12 @@ div#coursepostContainer {
     flex-direction: row;
     flex: 0 0 auto;
     padding-inline: 8px 8px;
-    /* testing horizontal scrolling */
-    overflow: auto;
+    overflow-x: auto;
     white-space: nowrap;
+}
+
+div#coursepostContainer::-webkit-scrollbar {
+    display: none;
 }
 
 /* COURSES YOU FOLLOW - POSTS */
@@ -537,9 +540,7 @@ div#coursepostContainer {
     background-color: var(--white1);
     border-radius: 7px 7px 7px 7px;
     min-height: 210px;
-    max-height: 210px;
     min-width: 245px;
-    max-width: 245px;
     margin-inline: 4px 4px;
     margin-block: 0% 5%;
 }
@@ -651,6 +652,60 @@ img.mp-thumbnail {
 .mp-subheader-likebutton:hover {
     opacity: 50%;
     cursor: pointer;
+}
+
+/* COURSE POST SCROLL BUTTONS */
+#scroll-container {
+    width: 100%;
+    height: 0;
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    top: 100px;
+    z-index: 1;
+    visibility: hidden;
+}
+
+#scroll-left {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    opacity: 60%;
+    border-radius: 50%;
+    float: left;
+}
+
+#scroll-left:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+#scroll-right {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    opacity: 60%;
+    border-radius: 50%;
+    float: right;
+}
+
+#scroll-right:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+#scroll-arrow-left {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin: 5px auto auto 2px;
+}
+
+#scroll-arrow-right {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin: 5px auto auto 7px;
 }
 
 /* SEARCHBAR/FILTERS */

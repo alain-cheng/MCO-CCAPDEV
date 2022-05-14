@@ -6,7 +6,7 @@ var User = function(firstName, lastName, degree, college, username, password, im
                this.username  = username;
                this.password  = password;
                this.img       = String(img);
-               this.followedCourses = [] // save course names
+               this.followedCourses = [] // save course objects
                this.likedPosts = []; // save post ids
           }
 
@@ -18,14 +18,13 @@ var Post = function(profFName, profLName, thumbnail, course, term, stars, owner,
                 this.course    = course;
                 this.term      = term;
                 this.stars     = stars;
-                this.owner     = owner; // we can assign nalang the firstName, lastName, degree, and college of the post owner here
-                this.id        = id; // kahit 6 digit id
+                this.owner     = owner;
+                this.id        = id; // 6 digit id
            }
 
 var College = function(name, code) {
                 this.name = name;
                 this.code = code;
-                this.courses = [] // each college has a list of courses
            }
 
 var Course = function(name, collegeid) {
@@ -56,14 +55,14 @@ $(document).ready(function () {
      users.push(user1, user2, user3, user4, user5, user6);
 
      // generate 5 sample posts owned by user2 to user5
-     var post1 = new Post("Porter", "Newman", "./public/placeholder-thumbnail.jpeg", "CCPROG", 2, 5, user2, 100001);
-     var post2 = new Post("Henry", "Ford", "./public/placeholder-thumbnail.jpeg", "CCDSTRU", 1, 4, user3, 100002);
-     var post3 = new Post("Farah", "Boeing", "./public/placeholder-thumbnail.jpeg", "CCPROG2", 2, 3, user3, 100003);
-     var post4 = new Post("Jack", "Frost", "./public/placeholder-thumbnail.jpeg", "CCPROG", 1, 4, user4, 100004);
-     var post5 = new Post("Whitney", "Spencer", "./public/placeholder-thumbnail.jpeg", "CSINTSY", 3, 2, user5, 100005);
+     var post1 = new Post("Porter", "Newman", "", "CCPROG", 2, 5, user2, 100001);
+     var post2 = new Post("Henry", "Ford", "", "CCDSTRU", 1, 4, user3, 100002);
+     var post3 = new Post("Farah", "Boeing", "", "CCPROG2", 2, 3, user3, 100003);
+     var post4 = new Post("Jack", "Frost", "", "CCPROG", 1, 4, user4, 100004);
+     var post5 = new Post("Whitney", "Spencer", "", "CSINTSY", 3, 2, user5, 100005);
      // and 2 sample posts owned by user6 not from CCS
-     var post6 = new Post("Charles", "Darwin", "./public/placeholder-thumbnail.jpeg", "KEMPSY1", 1, 5, user6, 100006);
-     var post7 = new Post("Isaac", "Newton", "./public/placeholder-thumbnail.jpeg", "KEMPRN1", 1, 4, user6, 100007);
+     var post6 = new Post("Charles", "Darwin", "", "KEMPSY1", 1, 5, user6, 100006);
+     var post7 = new Post("Isaac", "Newton", "", "KEMPRN1", 1, 4, user6, 100007);
      posts.push(post1, post2, post3, post4, post5, post6, post7);
 
      var college1 = new College("College of Computer Studies", "CCS");
@@ -82,35 +81,31 @@ $(document).ready(function () {
      courses.push(course1, course2, course3, course4, course5, course6, course7);
 
      // user1 is following CCPROG and CSINTSY
-     users[0].followedCourses.push(course1, course4);
+     //users[0].followedCourses.push(course1, course4);
 
      // lets auto login user1 for now
      login(user1);
 
-     // and display all posts
-     displayPosts(posts);
-     
-     // add event listeners to all like buttons on followed courses
-     const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
-     likeButtonsCF.forEach((e) => {
-          e.addEventListener("click", like);
-     });
-     // set all like buttons 'unliked on default'
-     $(likeButtonsCF).css("background-position", "-300px -130px");
+     // add an event handler to #fr-list when clicked
+     const courseFollow = document.getElementById("fr-list");
+     courseFollow.addEventListener("click", followCourse);
 
-     // event listeners to suggested courses
-     const followSuggestions = document.querySelectorAll(".fr-list-element-follow");
-     followSuggestions.forEach((e) => {
-          e.addEventListener("click", followCourse);
-     });
-     
+     $("#coursepostContaner").scroll(fadeWrap);
+
+     function fadeWrap() {
+          let scrollPos = window.pageYOffset || document.documentElement.scrollLeft;
+          if(scrollPos > 300) {
+               $("#scroll-left").show();
+          }
+          else {
+               $("#scroll-left").hide();
+          }
+     }
 
      let rating;
 
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
-
-     
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
@@ -149,11 +144,48 @@ $(document).ready(function () {
           // clear suggested courses
           $("#fr-list").html("");
 
-          // suggest courses based on followed courses that belong in the same college
-          courseSuggestions(user.followedCourses);
+          // if user is following atleast 1 course, suggest courses based on followed courses that belong in the same college
+          if(user.followedCourses.length > 0)
+               courseSuggestions(user.followedCourses);
+          // else suggest courses that are on the same college as the user
+          else if(user.followedCourses.length == 0) {
+               // create an array
+               let suggest = [];
+               // get the college of the user and suggest courses based off of that
+               let collegename = user.college;
+               let ccode;
+               for(var i = 0; i < colleges.length; i++) {
+                    if(colleges[i].name == collegename) {
+                         ccode = colleges[i].code;
+                         break;
+                    }
+               }
 
+               courses.forEach(e => {
+                    if(e.collegeid == ccode) {
+                         suggest.push(e);
+                    } 
+               });
+               courseSuggestions(suggest);
+          }
+               
           // clear followed course contents
           $("#coursepostContainer").html("");
+          // if user is not following any courses, display all posts
+          if(user.followedCourses.length == 0) 
+               displayPosts(posts);
+          // else display posts based on what courses being followed
+          else if(user.followedCourses.length > 0) {
+               for(var i = 0; i < user.followedCourses.length; i++) {
+                    for(var j = 0; j < posts.length; j++) {
+                         if(user.followedCourses[i].name == posts[j].course)
+                              displayPost(posts[j]);
+                    }
+               }
+          }
+
+          // reset the like button event handlers
+          addLikeEvents();
      }
 
      // Accepts an array of courses
@@ -227,13 +259,14 @@ $(document).ready(function () {
                return "Follow";
      }
 
-     // displays all posts in the given parameter
+     // displays all posts given a post array
      function displayPosts(posts) {
           for(var i = 0; i < posts.length; i++)
                displayPost(posts[i]);
      }
 
      // Will display post in the Followed Courses box (singular)
+     // accepts a post object
      function displayPost(post) {
           // Create post elements
           var mainpost = document.createElement("div");
@@ -353,13 +386,39 @@ $(document).ready(function () {
 
      // follows/unfollows courses in the suggestions tab
      function followCourse(e) {
-          let text = e.target.firstChild;
-          console.log(text);
-          console.log(e.target.innerHTML);
-          if(text == "Follow")
-               e.target.innerHTML = "Following";
-          else if(text == "Following")
-               e.target.innerHTML = "Follow";
+          let target = getEventTarget(e);
+          let sibling = target.previousElementSibling;
+          let currCourse = $(sibling).text();
+          if(target.className.toLowerCase() === "fr-list-element-follow") { //follow
+               // do something
+               if(target.innerText.toLowerCase() === "follow") {
+                    $(target).text("Following");
+                    // add that course to the currentUsers' followedCourses
+                    for(var i = 0; i < courses.length; i++) {
+                         if(courses[i].name == currCourse) {
+                              currentUser.followedCourses.push(courses[i]);
+                              break;
+                         }
+                    }
+               }
+               else if(target.innerText.toLowerCase() === "following") { //unfollow
+                    $(target).text("Follow");
+                    // loop tru currentUser's followedCourses and remove that course
+                    for(var i = 0; i < currentUser.followedCourses.length; i++) {
+                         if(currentUser.followedCourses[i].name == currCourse) {
+                              currentUser.followedCourses.splice(i, 1);
+                              break;
+                         }
+                    }
+               }
+          }
+          refreshContent(currentUser);
+     }
+
+     // Returns the target element for an event that has bubbled from the container
+     function getEventTarget(e) {
+          e = e || window.event;
+          return e.target || e.srcElement;
      }
 
      /* User information (i.e., name, degree), number of likes, and date and time of publication are hard-coded for now */
@@ -430,6 +489,33 @@ $(document).ready(function () {
 
           $(".newReviewContainer").css("display", "flex"); // reveals the (initially) hidden newReviewContainer div
           return htmlString;
+     }
+
+     // adds like button event listeners to all the posts in the followed courses tab
+     function addLikeEvents() {
+          const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
+          likeButtonsCF.forEach((e) => {
+          e.addEventListener("click", like);
+          });
+
+          // on default, set all the likes unset
+          $(likeButtonsCF).css("background-position", "-300px -130px");
+     }
+
+     function sideScroll(e, direction, speed, distance, step) {
+          let scrollAmount = 0;
+          let slideTimer = setInterval(function(){
+               if(direction == "left") {
+                    e.scrollLeft -= step;
+               } 
+               else {
+                    e.scrollLeft += step;
+               }
+               scrollAmount += step;
+               if(scrollAmount >= distance) {
+                    window.clearInterval(slideTimer);
+               }
+          }, speed);
      }
 
      $('.navbar-buttons').hover(function() {
@@ -608,5 +694,22 @@ $(document).ready(function () {
           //Reset errState
           var errState = 0;
      });
+
+     $("#scroll-left").click(function () { 
+          var container = document.getElementById("coursepostContainer");
+          sideScroll(container, "left", 5, 520, 10);
+     });
+
+     $("#scroll-right").click(function () { 
+          var container = document.getElementById("coursepostContainer");
+          sideScroll(container, "right", 5, 520, 10);
+     });
+
+     $("#coursesContainer").hover(function () {
+               $("#scroll-container").css("visibility", "visible");
+          }, function () {
+               $("#scroll-container").css("visibility", "hidden");
+          }
+     );
 });
   
