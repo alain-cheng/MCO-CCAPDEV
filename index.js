@@ -109,10 +109,48 @@ $(document).ready(function () {
 
      /* creates a pop up container when clicking login/register */
      $(".navbar-loginregister").click(function (e) {
-          $(".loginContainer").css("visibility", "visible");
-          $(".loginContainer").css("display", "block");
-          $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
-          $("body >*:not(.loginContainer)").css("pointer-events", "none");
+          //Handles log out functions
+          if(loggedIn != -1)
+          {
+               //Hide and revert
+               $(".rightbar").css("display", "none");
+               $(".reviewContainer").css("display", "none");
+               $(".coursesContainer").css("display", "none");
+               $(".searchContainer").css("left", "142px");
+               $(".navbar-loginregister").html("Login/Register");
+
+               // clear right bar contents
+               $(".lu-info-top").text("");
+               $(".lu-info-bottom").text("");
+
+               // clear suggested courses
+               $("#fr-list").html("");
+
+               // clear followed course contents
+               $("#coursepostContainer").html("");
+
+               // reset the like button event handlers
+               addLikeEvents();
+
+               //Reset inputs
+               $("#uName").val("");
+               $("#passwordInput").val("");
+               $("#passwordConfirm").val("");
+
+               //Hide and Delete reviews
+               $(".newReviewContainer").css("display", "none");
+               $(".newReviewContainer").html("");
+
+               //Reset loggedIn
+               loggedIn = -1;
+          }
+          else
+          {
+               $(".loginContainer").css("visibility", "visible");
+               $(".loginContainer").css("display", "block");
+               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
+               $("body >*:not(.loginContainer)").css("pointer-events", "none");
+          }  
      });
 
      /* closes the login pop up */
@@ -662,9 +700,11 @@ $(document).ready(function () {
                     $("#reviewStatus").html("Review successfully submitted!");
                     $("#reviewStatus").css("color", "green");
                     $("#reviewStatus").css("display", "block");
-                    setTimeout(() => {$("#reviewStatus").css("display", "none");}, "1600");
                     break;
           }
+
+          //Hide response
+          setTimeout(() => {$("#reviewStatus").css("display", "none");}, "1600");
 
           //Submit review
           if(errState == 0)
@@ -711,5 +751,74 @@ $(document).ready(function () {
                $("#scroll-container").css("visibility", "hidden");
           }
      );
+     
+     //Variable to determine if the user is logged in, -1 if not, and index number corresponding to the user data otherwise
+     var loggedIn = -1;
+
+     //Handles the login thingy
+     $(".login").click(function () {
+          //Check if username exists
+          var temp = -1; //Temp storage of index
+          var x;//Loop var
+          var tempU = $("#uName").val();//Stores username input
+
+          //Check if username exists
+          for(x = 0; x < users.length; x++)
+          {
+               if(users[x].username == tempU)
+               {
+                    temp = x;
+                    break;
+               }
+          }
+
+          //If username exists
+          if(temp != -1)
+          {
+               //Check if password is correct
+               if(users[temp].password == $("#passwordInput").val() && users[temp].password == $("#passwordConfirm").val())
+               {
+                    $("#loginResponse").html("Logged in as " + users[temp].firstName + " " + users[temp].lastName);
+                    $("#loginResponse").css("color", "var(--green1)");
+                    $("#loginResponse").css("display", "block");
+                    //Hide response and close popup
+                    setTimeout(() => {
+                         $("#loginResponse").css("display", "none");
+                         $("#loginResponse").css("color", "red");
+                         $(".loginContainer").css("visibility", "hidden");
+                         $(".loginContainer").css("display", "none");
+                         $("body >*:not(.loginContainer)").css("filter", "none");
+                         $("body >*:not(.loginContainer)").css("pointer-events", "all");
+                         }, "1600");
+                    loggedIn = temp; //Confirm login
+                    temp = -1;
+               }
+               else
+               {
+                    $("#loginResponse").html("Username or password do not match!");
+                    $("#loginResponse").css("display", "block");
+                    //Hide response
+                    setTimeout(() => {$("#loginResponse").css("display", "none");}, "1600");
+               }
+          }
+          else
+          {
+               $("#loginResponse").html("Username does not exist!");
+               $("#loginResponse").css("display", "block");
+               //Hide response
+               setTimeout(() => {$("#loginResponse").css("display", "none");}, "1600");
+          }
+
+          //Reveal and update
+          if(loggedIn != -1)
+          {
+               login(users[loggedIn]);
+               $(".rightbar").css("display", "block");
+               $(".reviewContainer").css("display", "block");
+               $(".coursesContainer").css("display", "block");
+               $(".searchContainer").css("left", "0px");
+               $(".navbar-loginregister").html("Log Out");
+          }
+     });
 });
   
