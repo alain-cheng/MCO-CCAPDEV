@@ -7,6 +7,11 @@
 The webpage will always be hosted at this link
 [index.html](https://alain-cheng.github.io/MCO-CCAPDEV/index.html)
 
+Login info:
+Harley Davis
+  username: HDavis
+  pass: user1
+
 Or this URL: https://alain-cheng.github.io/MCO-CCAPDEV/index.html
 
 **To change which html file branch to view from github, click on**:
