@@ -146,6 +146,7 @@ textarea {
     width: 238px;
     float: right;
     clear: right;
+    display: none;
 }
 
 .rightbar-contents {
@@ -273,12 +274,21 @@ textarea {
     position: relative;
 }
 
+#loginResponse{
+    text-align: center;
+    position: relative;
+    right: 3px;
+    color: red;
+    display: none;
+}
+
 /* WRITE A REVIEW */
 
 .reviewContainer {
     background-color: var(--white1);
     margin: auto;
     width: auto;
+    display: none;
 }
 
 #review-headline {
@@ -497,6 +507,7 @@ textarea {
     border-radius: 10px 10px 10px 10px;
     margin: auto;
     width: auto;
+    display: none;
 }
 
 div#courses-headline {
@@ -714,6 +725,8 @@ img.mp-thumbnail {
     background-color: var(--white1);
     margin: auto;
     width: 1000px;
+    position: relative;
+    left: 142px;
 }
 
 .searchBody {
