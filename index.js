@@ -1,8 +1,9 @@
-var User = function(firstName, lastName, degree, college, username, password, img) {
+var User = function(firstName, lastName, degree, college, batch, username, password, img) {
                this.firstName = firstName;
                this.lastName  = lastName;
                this.degree    = degree;
                this.college   = college;
+               this.batch     = batch;
                this.username  = username;
                this.password  = password;
                this.img       = String(img);
@@ -45,13 +46,13 @@ $(document).ready(function () {
      var currPosts = []; // posts only user should see based on follows or searches
      
      // generate 5 sample users
-     var user1 = new User("Harley", "Davis", "BSCS", "College of Computer Studies", "HDavis", "user1", "./public/user1.jpg");
-     var user2 = new User("Sarah", "Parker", "BSCS", "College of Computer Studies", "Sarah", "user2", "./public/user2.jpg");
-     var user3 = new User("Amy", "Bougainvillea", "BSCS", "College of Computer Studies", "Amivillea", "user3", "./public/user3.jpg");
-     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Computer Studies", "LanDoza", "user4", "./public/user4.jpg");
-     var user5 = new User("Francis", "Brown", "BSCS", "College of Computer Studies", "Francy", "user5", "./public/user5.jpg");
+     var user1 = new User("Harley", "Davis", "BSCS", "College of Computer Studies", "ID 120", "HDavis", "user1", "./public/user1.jpg");
+     var user2 = new User("Sarah", "Parker", "BSCS", "College of Computer Studies", "ID 119", "Sarah", "user2", "./public/user2.jpg");
+     var user3 = new User("Amy", "Bougainvillea", "BSCS", "College of Computer Studies", "ID 120", "Amivillea", "user3", "./public/user3.jpg");
+     var user4 = new User("Lance", "Mendoza", "BSCS", "College of Computer Studies", "ID 120", "LanDoza", "user4", "./public/user4.jpg");
+     var user5 = new User("Francis", "Brown", "BSCS", "College of Computer Studies", "ID 119", "Francy", "user5", "./public/user5.jpg");
      // and 1 user not from CCS
-     var user6 = new User("Mad", "Scientist", "BSBC", "College of Science", "MaddoScientisto", "user6", "./public/empty-profile-pic.jpeg");
+     var user6 = new User("Mad", "Scientist", "BSBC", "College of Science", "ID 118", "MaddoScientisto", "user6", "./public/empty-profile-pic.jpeg");
      users.push(user1, user2, user3, user4, user5, user6);
 
      // generate 5 sample posts owned by user2 to user5
@@ -120,6 +121,7 @@ $(document).ready(function () {
                $(".navbar-loginregister").html("Login/Register");
 
                // clear right bar contents
+               $("#logged-user").attr("src", "./public/empty-profile-pic.jpeg");
                $(".lu-info-top").text("");
                $(".lu-info-bottom").text("");
 
@@ -141,8 +143,28 @@ $(document).ready(function () {
                $(".newReviewContainer").css("display", "none");
                $(".newReviewContainer").html("");
 
+               //Store name of user temporarily
+               let tempName = users[loggedIn].firstName + " " + users[loggedIn].lastName;
+
                //Reset loggedIn
                loggedIn = -1;
+
+               //Re-open login window with a logout declaration
+               $(".loginContainer").css("visibility", "visible");
+               $(".loginContainer").css("display", "block");
+               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
+               $("body >*:not(.loginContainer)").css("pointer-events", "none");
+               $("#loginResponse").html(tempName + " logged out!");
+               $("#loginResponse").css("color", "var(--green1)");
+               $("#loginResponse").css("display", "block");
+               setTimeout(() => {
+                    $("#loginResponse").css("display", "none");
+                    $("#loginResponse").css("color", "red");
+                    $("#loginResponse").html("");
+                    }, "1600");
+
+               //erase tempName data
+               tempName = "";
           }
           else
           {
@@ -464,7 +486,7 @@ $(document).ready(function () {
 
      function createNewReview(fname, lname, course, term, rating, desc) {
 
-          let stars, legend, htmlString;
+          let stars, legend, htmlString, now;
 
           switch (rating) {
                case '1':
@@ -489,19 +511,22 @@ $(document).ready(function () {
                     break;
           }
 
+          //Store current date and time in variable
+          now = new Date();
+
           htmlString = `
                <div class="nrSubContainer">
 
-                    <img src="./public/user1.jpg" id="nrUserDP">
-                    <div class="nrUserDetails">Harley Davis</div>
-                    <div class="nrUserDetails">BSCS - ST</div>
-                    <div class="nrUserDetails">ID 120</div>
+                    <img src="${users[loggedIn].img}" id="nrUserDP">
+                    <div class="nrUserDetails">${users[loggedIn].firstName} ${users[loggedIn].lastName}</div>
+                    <div class="nrUserDetails">${users[loggedIn].degree}</div>
+                    <div class="nrUserDetails">${users[loggedIn].batch}</div>
 
                     <br>
 
                     <div class="nrPubInfo">Published on:</div>
-                    <div class="nrPubInfo">May 7, 2022</div>
-                    <div class="nrPubInfo">10:53 A.M</div>
+                    <div class="nrPubInfo">${now.toLocaleDateString("en-US", {month: "long", day: "numeric", year: "numeric"})}</div>
+                    <div class="nrPubInfo">${now.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric"})}</div>
                </div>
 
                <div class="divider"></div>
@@ -519,7 +544,7 @@ $(document).ready(function () {
                     </div>
 
                     <div class="nrDesc">${desc}</div>
-                    <div class="nrLikeCounter">5 likes</div>
+                    <div class="nrLikeCounter">0 likes</div>
                     
                </div>
           `;
@@ -795,7 +820,7 @@ $(document).ready(function () {
                }
                else
                {
-                    $("#loginResponse").html("Username or password do not match!");
+                    $("#loginResponse").html("Incorrect username/Email or password!");
                     $("#loginResponse").css("display", "block");
                     //Hide response
                     setTimeout(() => {$("#loginResponse").css("display", "none");}, "1600");
@@ -803,7 +828,7 @@ $(document).ready(function () {
           }
           else
           {
-               $("#loginResponse").html("Username does not exist!");
+               $("#loginResponse").html("Username/Email does not exist!");
                $("#loginResponse").css("display", "block");
                //Hide response
                setTimeout(() => {$("#loginResponse").css("display", "none");}, "1600");
