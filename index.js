@@ -182,7 +182,7 @@ $(document).ready(function () {
           $("body >*:not(.loginContainer)").css("filter", "none");
           $("body >*:not(.loginContainer)").css("pointer-events", "all");
      });
-
+     
      function login(user) {
           currentUser = user;
           // set profile picture
@@ -242,7 +242,7 @@ $(document).ready(function () {
                               displayPost(posts[j]);
                     }
                }
-          }
+          }  
 
           // reset the like button event handlers
           addLikeEvents();
@@ -393,6 +393,8 @@ $(document).ready(function () {
           $(mpSHImg).attr("src", post.owner.img);
           $(mpSHLTop).text(post.owner.firstName + " " + post.owner.lastName);
           $(mpSHLBot).text(post.owner.degree + " | " + post.owner.college);
+          $(mpLike).attr("id", post.id);
+          
           //Changing the amount of stars in the post
           switch(post.stars)
           {
@@ -435,12 +437,18 @@ $(document).ready(function () {
           let bgPos = e.target.style.backgroundPosition;
           if(bgPos == "-300px -130px") { // if like button is empty
                e.target.style.backgroundPosition = "-230px -130px";
-               console.log("Liked!");
+               currentUser.likedPosts.push(e.target.id);
+               console.log("Liked " + e.target.id);
           } 
           else { // if like button is color red
                e.target.style.backgroundPosition = "-300px -130px";
-               bgPos =
-               console.log("Removed Like.");
+               for(var i = 0; i < currentUser.likedPosts.length; i++) {
+                    if(currentUser.likedPosts[i] == e.target.id) {
+                         currentUser.likedPosts.splice(i, 1);
+                         break;
+                    }  
+               }
+               console.log("Removed Like for " + e.target.id);
           }          
      }
 
@@ -558,11 +566,15 @@ $(document).ready(function () {
      function addLikeEvents() {
           const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
           likeButtonsCF.forEach((e) => {
-          e.addEventListener("click", like);
+               e.addEventListener("click", like);
+               // sets the like button if the user has already liked the post or not.
+               if(currentUser.likedPosts.indexOf(e.id) !== -1) {
+                    e.style.backgroundPosition = "-230px -130px";
+               }
+               else {
+                    e.style.backgroundPosition = "-300px -130px";
+               }
           });
-
-          // on default, set all the likes unset
-          $(likeButtonsCF).css("background-position", "-300px -130px");
      }
 
      function sideScroll(e, direction, speed, distance, step) {
