@@ -12,10 +12,10 @@ var User = function(firstName, lastName, degree, college, batch, username, passw
           }
 
 
-var Post = function(profFName, profLName, thumbnail, course, term, stars, owner, id) {
+var Post = function(profFName, profLName, text, course, term, stars, owner, id) {
                 this.profFName = profFName;
                 this.profLName = profLName;
-                this.thumbnail = String(thumbnail);
+                this.text      = String(text);
                 this.course    = course;
                 this.term      = term;
                 this.stars     = stars;
@@ -56,14 +56,14 @@ $(document).ready(function () {
      users.push(user1, user2, user3, user4, user5, user6);
 
      // generate 5 sample posts owned by user2 to user5
-     var post1 = new Post("Porter", "Newman", "", "CCPROG", 2, 5, user2, 100001);
-     var post2 = new Post("Henry", "Ford", "", "CCDSTRU", 1, 4, user3, 100002);
-     var post3 = new Post("Farah", "Boeing", "", "CCPROG2", 2, 3, user3, 100003);
-     var post4 = new Post("Jack", "Frost", "", "CCPROG", 1, 4, user4, 100004);
-     var post5 = new Post("Whitney", "Spencer", "", "CSINTSY", 3, 2, user5, 100005);
+     var post1 = new Post("Porter", "Newman", "Prof is entertaining, also grades high, strongly recommend!", "CCPROG", 2, 5, user2, 100001);
+     var post2 = new Post("Henry", "Ford", "Very good lectures, always late tho but still recommend", "CCDSTRU", 1, 4, user3, 100002);
+     var post3 = new Post("Farah", "Boeing", "Their internet is slow lol, but alright overall", "CCPROG2", 2, 3, user3, 100003);
+     var post4 = new Post("Jack", "Frost", "Gives a lot of assignments, but good prof, thats my only complaint", "CCPROG", 1, 4, user4, 100004);
+     var post5 = new Post("Whitney", "Spencer", "I honestly don't know what to say, Im shocked beyond disbelief, just don't take them thats all just take my word for it...Im going to need therapy after this", "CSINTSY", 3, 2, user5, 100005);
      // and 2 sample posts owned by user6 not from CCS
-     var post6 = new Post("Charles", "Darwin", "", "KEMPSY1", 1, 5, user6, 100006);
-     var post7 = new Post("Isaac", "Newton", "", "KEMPRN1", 1, 4, user6, 100007);
+     var post6 = new Post("Albert", "Einstein", "The chem laboratory blew up because of them but they teach great", "KEMPSY1", 1, 5, user6, 100006);
+     var post7 = new Post("Isaac", "Newton", "Why do apples keep falling on their head it doesn't make sense", "KEMPRN1", 1, 4, user6, 100007);
      posts.push(post1, post2, post3, post4, post5, post6, post7);
 
      var college1 = new College("College of Computer Studies", "CCS");
@@ -338,8 +338,8 @@ $(document).ready(function () {
                var mpReview = document.createElement("div");
                     var mpRStars = document.createElement("div");
                     var mpRDesc = document.createElement("div");
-               var mpThumbnail = document.createElement("div");
-                    var mpTImg = document.createElement("img");
+               var mpReviewBox = document.createElement("div");
+                    var mpReviewText = document.createElement("div");
                var mpSubHeader = document.createElement("div");
                     var mpSHImg = document.createElement("img");
                     var mpSHLeft = document.createElement("div");
@@ -357,8 +357,8 @@ $(document).ready(function () {
           $(mpReview).addClass("mp-review");
           $(mpRStars).addClass("mp-review-stars");
           $(mpRDesc).addClass("mp-rev-description");
-          $(mpThumbnail).addClass("mp-thumbnailContainer");
-          $(mpTImg).addClass("mp-thumbnail");
+          $(mpReviewBox).addClass("mp-review-box");
+          $(mpReviewText).addClass("mp-review-text");
           $(mpSubHeader).addClass("mp-subheader");
           $(mpSHImg).addClass("mp-subheader-pic");
           $(mpSHLeft).addClass("mp-subheader-left");
@@ -375,8 +375,8 @@ $(document).ready(function () {
           $(mainpost).append(mpReview);
           $(mpReview).append(mpRStars);
           $(mpReview).append(mpRDesc);
-          $(mainpost).append(mpThumbnail);
-          $(mpThumbnail).append(mpTImg);
+          $(mainpost).append(mpReviewBox);
+          $(mpReviewBox).append(mpReviewText);
           $(mainpost).append(mpSubHeader);
           $(mpSubHeader).append(mpSHImg);
           $(mpSubHeader).append(mpSHLeft);
@@ -389,7 +389,7 @@ $(document).ready(function () {
           $(mpHMTop).text(post.profFName + " " + post.profLName);
           $(mpHMBot).text(post.course + " | Term " + post.term);
           $(mpRDesc).text(getStarDesc(post.stars));
-          $(mpTImg).attr("src", post.thumbnail);
+          $(mpReviewText).text(post.text);
           $(mpSHImg).attr("src", post.owner.img);
           $(mpSHLTop).text(post.owner.firstName + " " + post.owner.lastName);
           $(mpSHLBot).text(post.owner.degree + " | " + post.owner.college);
