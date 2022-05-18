@@ -506,6 +506,7 @@ textarea {
     background-image: linear-gradient(to right, var(--green1), var(--green3));
     border-radius: 10px 10px 10px 10px;
     margin: auto;
+    min-height: 318px;
     width: auto;
     display: none;
 }
