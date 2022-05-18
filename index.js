@@ -519,6 +519,10 @@ $(document).ready(function () {
                     break;
           }
 
+          // create new post object
+          newPost = new Post(fname, lname, "", course, term, stars, currentUser, (100000+posts.length+1));
+          posts.push(newPost);
+
           //Store current date and time in variable
           now = new Date();
 
