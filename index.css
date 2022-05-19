@@ -392,6 +392,11 @@ textarea {
 
 /* New Review */
 
+.newReviewContent {
+    display: flex;
+    flex-direction: column;
+}
+
 .newReviewContainer {
     display: none;
     border: 1px solid var(--black1);
@@ -489,6 +494,28 @@ textarea {
         margin-top: 3px;
 
     }
+
+.new-review-headline {
+    font-family: 'Inter', sans-serif;
+    color: var(--black1);
+    font-size: 36px;
+    max-height: 150px;
+    margin: 10px auto auto auto;
+}
+
+.edit-review {
+    background-color: var(--green1);
+    border: none;
+    color: var(--white1);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 100%;
+    border-radius: 10px 10px 10px 10px;
+}
 
 
 
