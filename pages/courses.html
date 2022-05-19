@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            DLSU Prof to Pick | Professors
+        </title>
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="courses.js"></script>
+        <link rel="stylesheet" href="../index.css">
+        <link rel="stylesheet" href="courses.css">
+    </head>
+    <body>
+        <div class="header-logo">
+            <img src="../public/LOGO.png" alt="DLSU PROF TO PICK LOGO">
+        </div>
+
+        <div class="navbar">
+            <div class="navbar-contents">
+                <a href="../index.html"><button class="navbar-buttons">Home</button></a>
+                <a href="profs.html"><button class="navbar-buttons">Profs</button></a>
+                <a href="courses.html"><button class="navbar-buttons">Courses</button></a>
+                <button class="navbar-loginregister">Login/Register</button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="searchBarContainer">
+                <div class="searchInputContainer">
+                    <select name="filtercollege" id="filtercollege" class="filterInput">
+                        <option value="" disabled selected hidden>Select College ...</option>
+                        <option value="cla">CLA</option>
+                        <option value="cos">COS</option>
+                        <option value="gcoe">GCOE</option>
+                        <option value="rvcob">RVCOB</option>
+                        <option value="soe">SOE</option>
+                        <option value="baggced">BAGCED</option>
+                        <option value="ccs">CCS</option>
+                    </select>
+                    <select name="filterCourseType" id="filterCourseType" class="filterInput">
+                        <option value="" disabled selected hidden>Select Course Type ...</option>
+                        <option value="GE">General Education</option>
+                        <option value="MC">Major Course</option>
+                        <option value="SC">Specialization Course</option>
+                        <option value="PE">Professional Elective</option>
+                    </select>
+                    <button class="searchButton" id="searchByFilter">SEARCH BY FILTER</button>
+                </div>
+                <div class="searchInputContainer">
+                    <input type="text" id="profLastName2" name="profLastName2" placeholder="Input Prof's Last Name...">
+                    <button class="searchButton" id="searchByName">SEARCH BY NAME</button>
+                </div>
+                
+            </div>
+
+            <div id="review-headline">GENERAL EDUCATION</div>
+
+            <!-- HTML code below is a modified version of a table copy-pasted from the DLSU website-->
+            <!-- https://www.dlsu.edu.ph/colleges/ccs/undergraduate-degree-programs/cs-nis/ -->
+            
+            <table id="course-table">
+                <tbody>
+                <th colspan="2">COURSE NAME</td>
+                <th>Units</td>
+                <tr>
+                <td width="108">GEUSELF</td>
+                <td width="402">Understanding the Self</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GERPHIS</td>
+                <td width="402">Readings in Philippine History</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEWORLD</td>
+                <td style="text-align: left;" width="402">The Contemporary World</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEMATMW</td>
+                <td width="402">Mathematics in the Modern World</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEPCOMM</td>
+                <td width="402">Purposive Communication</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEARTAP</td>
+                <td style="text-align: left;" width="402">Art Appreciation</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GESTSOC</td>
+                <td width="402">Science, Technology, and the Society</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEETHIC</td>
+                <td style="text-align: left;" width="402">Ethics</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GERIZAL</td>
+                <td width="402">Life and Works of Rizal</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEFILI1</td>
+                <td style="text-align: left;" width="402">Introduksyon sa Filipinohiya</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GEFILI2</td>
+                <td width="402">Mga Usaping Pangwika sa Iba’t Ibang Larangan</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">GELITE1</td>
+                <td width="402">Literatures of the Philippines</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">LCFAITH</td>
+                <td width="402">Faith Worth Living</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">LCENWRD</td>
+                <td width="402">Encountering the Word in the World</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">LCASEAN</td>
+                <td width="402">The Filipino and ASEAN</td>
+                <td style="text-align: center;" width="114">3</td>
+                </tr>
+                <tr>
+                <td width="108">LSLSONE</td>
+                <td width="402">Lasallian Studies 1</td>
+                <td style="text-align: center;" width="114">1 (non-acad)</td>
+                </tr>
+                <tr>
+                <td width="108">LSLSTWO</td>
+                <td width="402">Lasallian Studies 2</td>
+                <td style="text-align: center;" width="114">1 (non-acad)</td>
+                </tr>
+                <tr>
+                <td width="108">LSLSTRI</td>
+                <td width="402">Lasallian Studies 3</td>
+                <td style="text-align: center;" width="114">1 (non-acad)</td>
+                </tr>
+                <tr>
+                <td width="108">GEFTWEL</td>
+                <td width="402">Physical Fitness and Wellness</td>
+                <td style="text-align: center;" width="114">2</td>
+                </tr>
+                <tr>
+                <td width="108">GEDANCE</td>
+                <td width="402">Physical Fitness and Wellness in Dance</td>
+                <td style="text-align: center;" width="114">2</td>
+                </tr>
+                <tr>
+                <td width="108">GESPORT</td>
+                <td width="402">Physical Fitness and Wellness in Individual Sports</td>
+                <td style="text-align: center;" width="114">2</td>
+                </tr>
+                <tr>
+                <td width="108">GETEAMS</td>
+                <td width="402">Physical Fitness and Wellness in Team Sports</td>
+                <td style="text-align: center;" width="114">2</td>
+                </tr>     
+                </tbody>
+                </table>
+        </div>
+
+
+
+
+    </body>
+</html>
