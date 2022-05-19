@@ -42,6 +42,17 @@ var courses = []; // all courses
 
 var currentUser;
 
+var updateData = {
+     fname: "", 
+     lname: "", 
+     course: "", 
+     term: "", 
+     rating: "", 
+     desc: ""
+}
+
+
+
 $(document).ready(function () {
      var currPosts = []; // posts only user should see based on follows or searches
      
@@ -93,6 +104,10 @@ $(document).ready(function () {
 
      $("#coursepostContaner").scroll(fadeWrap);
 
+/*========================================================*/
+/* FUNCTIONS OF index.js */
+/*========================================================*/
+
      function fadeWrap() {
           let scrollPos = window.pageYOffset || document.documentElement.scrollLeft;
           if(scrollPos > 300) {
@@ -109,79 +124,6 @@ $(document).ready(function () {
      $(".loginContainer").css("visibility", "hidden");
 
      /* creates a pop up container when clicking login/register */
-     $(".navbar-loginregister").click(function (e) {
-          //Handles log out functions
-          if(loggedIn != -1)
-          {
-               //Hide and revert
-               $(".rightbar").css("display", "none");
-               $(".reviewContainer").css("display", "none");
-               $(".coursesContainer").css("display", "none");
-               $(".searchContainer").css("left", "142px");
-               $(".navbar-loginregister").html("Login/Register");
-
-               // clear right bar contents
-               $("#logged-user").attr("src", "./public/empty-profile-pic.jpeg");
-               $(".lu-info-top").text("");
-               $(".lu-info-bottom").text("");
-
-               // clear suggested courses
-               $("#fr-list").html("");
-
-               // clear followed course contents
-               $("#coursepostContainer").html("");
-
-               // reset the like button event handlers
-               addLikeEvents();
-
-               //Reset inputs
-               $("#uName").val("");
-               $("#passwordInput").val("");
-               $("#passwordConfirm").val("");
-
-               //Hide and Delete reviews
-               $(".newReviewContainer").css("display", "none");
-               $(".newReviewContainer").html("");
-
-               //Store name of user temporarily
-               let tempName = users[loggedIn].firstName + " " + users[loggedIn].lastName;
-
-               //Reset loggedIn
-               loggedIn = -1;
-
-               //Re-open login window with a logout declaration
-               $(".loginContainer").css("visibility", "visible");
-               $(".loginContainer").css("display", "block");
-               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
-               $("body >*:not(.loginContainer)").css("pointer-events", "none");
-               $("#loginResponse").html(tempName + " logged out!");
-               $("#loginResponse").css("color", "var(--green1)");
-               $("#loginResponse").css("display", "block");
-               setTimeout(() => {
-                    $("#loginResponse").css("display", "none");
-                    $("#loginResponse").css("color", "red");
-                    $("#loginResponse").html("");
-                    }, "1600");
-
-               //erase tempName data
-               tempName = "";
-          }
-          else
-          {
-               $(".loginContainer").css("visibility", "visible");
-               $(".loginContainer").css("display", "block");
-               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
-               $("body >*:not(.loginContainer)").css("pointer-events", "none");
-          }  
-     });
-
-     /* closes the login pop up */
-     $("button.login-close").click(function (e) {
-          $(".loginContainer").css("visibility", "hidden");
-          $(".loginContainer").css("display", "none");
-          $("body >*:not(.loginContainer)").css("filter", "none");
-          $("body >*:not(.loginContainer)").css("pointer-events", "all");
-     });
      
      function login(user) {
           currentUser = user;
@@ -496,6 +438,13 @@ $(document).ready(function () {
 
           let stars, legend, htmlString, now;
 
+          updateData.fname = fname;
+          updateData.lname = lname;
+          updateData.course = course;
+          updateData.term = term;
+          updateData.rating = rating;
+          updateData.desc = desc;
+
           switch (rating) {
                case '1':
                     stars = "★";
@@ -566,6 +515,17 @@ $(document).ready(function () {
           return htmlString;
      }
 
+     function updateReview () {
+          $(".newReviewContainer").css("display", "none");
+
+          $("#profname").val(updateData.fname);
+          $("#profLastName").val(updateData.lname);
+          $("#profcourse").val(updateData.course);
+          $("#acadterm").val(updateData.term);
+          $("#reviewbody").val(updateData.desc);
+
+     }
+
      // adds like button event listeners to all the posts in the followed courses tab
      function addLikeEvents() {
           const likeButtonsCF = document.querySelectorAll("div.mp-subheader-likebutton");
@@ -597,6 +557,84 @@ $(document).ready(function () {
           }, speed);
      }
 
+/*========================================================*/
+/* HOVER/CLICK EVENTS */
+/*========================================================*/
+
+     $(".navbar-loginregister").click(function (e) {
+          //Handles log out functions
+          if(loggedIn != -1)
+          {
+               //Hide and revert
+               $(".rightbar").css("display", "none");
+               $(".reviewContainer").css("display", "none");
+               $(".coursesContainer").css("display", "none");
+               $(".searchContainer").css("left", "142px");
+               $(".navbar-loginregister").html("Login/Register");
+
+               // clear right bar contents
+               $("#logged-user").attr("src", "./public/empty-profile-pic.jpeg");
+               $(".lu-info-top").text("");
+               $(".lu-info-bottom").text("");
+
+               // clear suggested courses
+               $("#fr-list").html("");
+
+               // clear followed course contents
+               $("#coursepostContainer").html("");
+
+               // reset the like button event handlers
+               addLikeEvents();
+
+               //Reset inputs
+               $("#uName").val("");
+               $("#passwordInput").val("");
+               $("#passwordConfirm").val("");
+
+               //Hide and Delete reviews
+               $(".newReviewContainer").css("display", "none");
+               $(".newReviewContainer").html("");
+
+               //Store name of user temporarily
+               let tempName = users[loggedIn].firstName + " " + users[loggedIn].lastName;
+
+               //Reset loggedIn
+               loggedIn = -1;
+
+               //Re-open login window with a logout declaration
+               $(".loginContainer").css("visibility", "visible");
+               $(".loginContainer").css("display", "block");
+               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
+               $("body >*:not(.loginContainer)").css("pointer-events", "none");
+               $("#loginResponse").html(tempName + " logged out!");
+               $("#loginResponse").css("color", "var(--green1)");
+               $("#loginResponse").css("display", "block");
+               setTimeout(() => {
+                    $("#loginResponse").css("display", "none");
+                    $("#loginResponse").css("color", "red");
+                    $("#loginResponse").html("");
+                    }, "1600");
+
+               //erase tempName data
+               tempName = "";
+          }
+          else
+          {
+               $(".loginContainer").css("visibility", "visible");
+               $(".loginContainer").css("display", "block");
+               $("body >*:not(.loginContainer)").css("filter", "blur(2.5px)");
+               $("body >*:not(.loginContainer)").css("pointer-events", "none");
+          }  
+     });
+
+     /* closes the login pop up */
+     $("button.login-close").click(function (e) {
+          $(".loginContainer").css("visibility", "hidden");
+          $(".loginContainer").css("display", "none");
+          $("body >*:not(.loginContainer)").css("filter", "none");
+          $("body >*:not(.loginContainer)").css("pointer-events", "all");
+     });
+
      $('.navbar-buttons').hover(function() {
           $(this).css("background-color", "rgb(71, 179, 107)");
      }, function (){
@@ -610,6 +648,12 @@ $(document).ready(function () {
      });
 
      $('.reviewSubmit').hover(function() {
+          $(this).css("opacity", "50%");
+     }, function (){
+          $(this).css("opacity", "100%");
+     });
+
+     $('.edit-review').hover(function() {
           $(this).css("opacity", "50%");
      }, function (){
           $(this).css("opacity", "100%");
@@ -758,6 +802,9 @@ $(document).ready(function () {
                console.log("Rating: " + rating);
                console.log("Description: " + descInput);
 
+               
+               $(".new-review-headline").html("YOU CREATED A NEW REVIEW!")
+               $("#edit-review").html('<button class="edit-review">CLICK HERE TO EDIT</button>')
                // Call createNewReview to update the newReviewContainer div
                $(".newReviewContainer").html(createNewReview(fNameInput, lNameInput, courseInput, aTermInput, rating, descInput))
 
@@ -774,6 +821,11 @@ $(document).ready(function () {
 
           //Reset errState
           var errState = 0;
+     });
+
+     $(".edit-review").click(function () {
+          console.log("Edit review button clicked")
+          updateReview();
      });
 
      $("#scroll-left").click(function () { 
