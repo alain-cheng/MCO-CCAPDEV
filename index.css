@@ -609,17 +609,23 @@ div#coursepostContainer::-webkit-scrollbar {
 .mp-review-box {
     background-color: var(--white3);
     height: 120px;
-    width: 98%;
     margin: 5px 3px auto 3px;
 }
 
 .mp-review-text {
+    background-color: rgb(212, 212, 115); /*for debugging*/
     display: inline-block;
-    background-color: yellowgreen;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    width: 235px;
+    margin: 0 0 0 -163px;
+    height: auto;
+}
+
+.mp-review-text > p {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 800;
-    overflow-wrap: break-word;
 }
 
 .mp-subheader {

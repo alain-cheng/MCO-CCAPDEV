@@ -340,6 +340,7 @@ $(document).ready(function () {
                     var mpRDesc = document.createElement("div");
                var mpReviewBox = document.createElement("div");
                     var mpReviewText = document.createElement("div");
+                         var mpRParagraph = document.createElement("p");
                var mpSubHeader = document.createElement("div");
                     var mpSHImg = document.createElement("img");
                     var mpSHLeft = document.createElement("div");
@@ -377,6 +378,7 @@ $(document).ready(function () {
           $(mpReview).append(mpRDesc);
           $(mainpost).append(mpReviewBox);
           $(mpReviewBox).append(mpReviewText);
+          $(mpReviewText).append(mpRParagraph);
           $(mainpost).append(mpSubHeader);
           $(mpSubHeader).append(mpSHImg);
           $(mpSubHeader).append(mpSHLeft);
@@ -389,7 +391,7 @@ $(document).ready(function () {
           $(mpHMTop).text(post.profFName + " " + post.profLName);
           $(mpHMBot).text(post.course + " | Term " + post.term);
           $(mpRDesc).text(getStarDesc(post.stars));
-          $(mpReviewText).text(post.text);
+          $(mpRParagraph).text(post.text);
           $(mpSHImg).attr("src", post.owner.img);
           $(mpSHLTop).text(post.owner.firstName + " " + post.owner.lastName);
           $(mpSHLBot).text(post.owner.degree + " | " + post.owner.college);
