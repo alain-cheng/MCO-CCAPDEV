@@ -27,6 +27,25 @@ body {
     --yellow3: #c59b08;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--white5);
+    border-radius: 10px;
+  }
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray1);
+}
+
 /* Stylings for general HTML elements (i.e., <p>, <h1>) */
 
 input[type=text], select{
@@ -247,12 +266,10 @@ textarea {
     min-width: 500px;
     min-height: 250px;
     visibility: hidden;
-    display: none;
     z-index: 2;
 
     box-shadow: 3px 3px 10px var(--gray3);
-    
-    margin: 10% 30% auto 30%;
+    margin: 0px auto auto 50%;
 }
 
 .login-close {
@@ -575,7 +592,6 @@ div#coursepostContainer::-webkit-scrollbar {
 }
 
 /* COURSES YOU FOLLOW - POSTS */
-
 .mainpost {
     background-color: var(--white1);
     border-radius: 7px 7px 7px 7px;
@@ -640,19 +656,19 @@ div#coursepostContainer::-webkit-scrollbar {
 }
 
 .mp-review-text {
-    background-color: rgb(212, 212, 115); /*for debugging*/
     display: inline-block;
-    overflow-wrap: break-word;
-    word-break: break-all;
     width: 235px;
     margin: 0 0 0 -163px;
-    height: auto;
+    height: 100%;
+
+    overflow-wrap: break-word; /* Not working */
+    word-break: break-all; /* Not working */
+    overflow-x: auto; /* Placeholder for overflow-wrap and word-break not working */
 }
 
 .mp-review-text > p {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
-    font-weight: 800;
 }
 
 .mp-subheader {
@@ -767,7 +783,8 @@ div#coursepostContainer::-webkit-scrollbar {
 }
 
 .searchBody {
-    background-color: var(--green1);
+    background-image: linear-gradient(to right, var(--green1), var(--green3));
+    border-radius: 10px;
     width: 750px;
     height: 90px;
     display: inline-block;

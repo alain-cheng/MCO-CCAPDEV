@@ -18,8 +18,8 @@ var Post = function(profFName, profLName, text, course, term, stars, owner, id) 
                 this.text      = String(text);
                 this.course    = course;
                 this.term      = term;
-                this.stars     = stars;
-                this.owner     = owner;
+                this.stars     = stars; // saves the number of stars
+                this.owner     = owner; // a user object
                 this.id        = id; // 6 digit id
            }
 
@@ -92,12 +92,6 @@ $(document).ready(function () {
      var course7 = new Course("KEMPRN1", "COS");
      courses.push(course1, course2, course3, course4, course5, course6, course7);
 
-     // user1 is following CCPROG and CSINTSY
-     //users[0].followedCourses.push(course1, course4);
-
-     // lets auto login user1 for now
-     login(user1);
-
      // add an event handler to #fr-list when clicked
      const courseFollow = document.getElementById("fr-list");
      courseFollow.addEventListener("click", followCourse);
@@ -123,8 +117,7 @@ $(document).ready(function () {
      // hide the login container
      $(".loginContainer").css("visibility", "hidden");
 
-     /* creates a pop up container when clicking login/register */
-     
+     /* Creates a pop up when clicking login/register */
      function login(user) {
           currentUser = user;
           // set profile picture
@@ -261,13 +254,13 @@ $(document).ready(function () {
                return "Follow";
      }
 
-     // displays all posts given a post array
+     // displays all posts given a list of post objects
      function displayPosts(posts) {
           for(var i = 0; i < posts.length; i++)
                displayPost(posts[i]);
      }
 
-     // Will display post in the Followed Courses box (singular)
+     // Will display a post in the Followed Courses box (singular)
      // accepts a post object
      function displayPost(post) {
           // Create post elements
@@ -435,10 +428,10 @@ $(document).ready(function () {
 
      /* User information (i.e., name, degree), number of likes, and date and time of publication are hard-coded for now */
      /* I'll try to find some APIs that can get the current date and time*/
-
      function createNewReview(fname, lname, course, term, rating, desc) {
 
           let stars, legend, htmlString, now;
+          let numStars;
 
           updateData.fname = fname;
           updateData.lname = lname;
@@ -450,28 +443,33 @@ $(document).ready(function () {
           switch (rating) {
                case '1':
                     stars = "★";
+                    numStars = 1;
                     legend = "DO NOT TAKE";
                     break;
                case '2':
                     stars = "★★";
+                    numStars = 2;
                     legend = "Poor";
                     break;
                case '3':
                     stars = "★★★";
+                    numStars = 3;
                     legend = "Average";
                     break;
                case '4':
                     stars = "★★★★";
+                    numStars = 4;
                     legend = "Good";
                     break;
                case '5':
                     stars = "★★★★★";
+                    numStars = 5;
                     legend = "Excellent";
                     break;
           }
 
           // create new post object
-          newPost = new Post(fname, lname, "", course, term, stars, currentUser, (100000+posts.length+1));
+          newPost = new Post(fname, lname, String(desc), course, term, numStars, currentUser, (100000+posts.length+1));
           posts.push(newPost);
 
           //Store current date and time in variable
@@ -823,6 +821,8 @@ $(document).ready(function () {
 
           //Reset errState
           var errState = 0;
+          // update page of user
+          refreshContent(currentUser);
      });
 
      $(".edit-review").click(function () {
