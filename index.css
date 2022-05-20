@@ -131,6 +131,8 @@ textarea {
     opacity: 100%;
 }
 
+
+
 /* MAIN PAGE */
 .content {
     min-width: 1000px;
@@ -152,6 +154,18 @@ textarea {
 
 .mainpage hr {
     width: 100%;
+}
+
+/* Signed Out Message */
+.signed-out-message {
+    background-image: linear-gradient(to right, var(--green1), var(--green3));
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    color: var(--white1);
+    font-size: 30px;
+    height: auto;
+    max-width: auto;
+    padding: 10px;
 }
 
 /* RIGHT BAR */
@@ -585,6 +599,19 @@ div#coursepostContainer {
     padding-inline: 8px 8px;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+.empty-post-message {
+    border: 1px solid white;
+    padding: 25px;
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+    margin: 25px auto;
+
+    font-family: 'Inter', sans-serif;
+    color: var(--white1);
+    font-size: 40px;
 }
 
 div#coursepostContainer::-webkit-scrollbar {

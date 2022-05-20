@@ -40,6 +40,8 @@ var posts = []; // all posts
 var colleges = []; // all colleges
 var courses = []; // all courses
 
+var errPostEmpty = "OOPS! There are no posts here."
+
 var currentUser;
 
 var updateData = {
@@ -50,8 +52,6 @@ var updateData = {
      rating: "", 
      desc: ""
 }
-
-
 
 $(document).ready(function () {
      var currPosts = []; // posts only user should see based on follows or searches
@@ -91,6 +91,9 @@ $(document).ready(function () {
      var course6 = new Course("KEMPSY1", "COS");
      var course7 = new Course("KEMPRN1", "COS");
      courses.push(course1, course2, course3, course4, course5, course6, course7);
+
+     //user1 is following CCPROG and CSINTSY
+     user1.followedCourses.push(course1, course4);
 
      // add an event handler to #fr-list when clicked
      const courseFollow = document.getElementById("fr-list");
@@ -171,12 +174,15 @@ $(document).ready(function () {
                displayPosts(posts);
           // else display posts based on what courses being followed
           else if(user.followedCourses.length > 0) {
+               let currPosts = [];
                for(var i = 0; i < user.followedCourses.length; i++) {
                     for(var j = 0; j < posts.length; j++) {
                          if(user.followedCourses[i].name == posts[j].course)
-                              displayPost(posts[j]);
+                              //displayPost(posts[j]);
+                              currPosts.push(posts[j]);
                     }
                }
+               displayPosts(currPosts);
           }  
 
           // reset the like button event handlers
@@ -188,6 +194,7 @@ $(document).ready(function () {
           // determine first which colleges the courses in the list are from
           var collegecodes = [];
           var flag = 0;
+          var currPosts = [];
 
           // save first element
           collegecodes.push(courseList[0].collegeid);
@@ -204,7 +211,7 @@ $(document).ready(function () {
                          collegecodes.push(courseList[i].collegeid);
                }
 
-               for(var x = 0; x < collegecodes.length; x++) { // display all courses with the same college code
+               for(var x = 0; x < collegecodes.length; x++) { // save all courses with the same college code
                     for(var y = 0; y < courses.length; y++) {
                          if(courses[y].collegeid == collegecodes[x])
                               displayCourse(courses[y].name);
@@ -213,7 +220,7 @@ $(document).ready(function () {
           }
           else {
                for(var l = 0; l < courses.length; l++) {
-                    if(courses[l].collegeid == collegecodes[0]) // display all courses with the same collegeid
+                    if(courses[l].collegeid == collegecodes[0]) // save all courses with the same collegeid
                          displayCourse(courses[l].name);
                }
           }
@@ -256,8 +263,20 @@ $(document).ready(function () {
 
      // displays all posts given a list of post objects
      function displayPosts(posts) {
-          for(var i = 0; i < posts.length; i++)
-               displayPost(posts[i]);
+          //if array is empty, post a message
+          if(posts.length == 0) {
+               var message = document.createElement("div");
+               $(message).addClass("empty-post-message");
+               $(message).text(errPostEmpty);
+               $("#coursepostContainer").append(message);
+               console.log(errPostEmpty)
+          }
+          else {
+               console.log("Posts available")
+               for(var i = 0; i < posts.length; i++)
+                    displayPost(posts[i]); 
+          }
+          
      }
 
      // Will display a post in the Followed Courses box (singular)
@@ -830,6 +849,12 @@ $(document).ready(function () {
           updateReview();
      });
 
+     // Display all posts regardless if you are following it or not upon clicking.
+     $("#see-all").click(function () {
+          $("#coursepostContainer").html("");
+          displayPosts(posts);
+     });
+
      $("#scroll-left").click(function () { 
           var container = document.getElementById("coursepostContainer");
           sideScroll(container, "left", 5, 520, 10);
@@ -907,6 +932,7 @@ $(document).ready(function () {
           //Reveal and update
           if(loggedIn != -1)
           {
+               $(".signed-out-message").hide();
                login(users[loggedIn]);
                $(".rightbar").css("display", "block");
                $(".reviewContainer").css("display", "block");
